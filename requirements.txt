@@ -1,0 +1,6 @@
+numpy
+huggingface_hub
+transformers[torch]
+datasets
+wandb
+evaluate
