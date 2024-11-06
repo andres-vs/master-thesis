@@ -1,0 +1,416 @@
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_1-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_1-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_1-prompt_15.png|||Comment: and strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_7-prompt_15.png|||Comment: very strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_8-prompt_15.png|||Comment: very strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_8-prompt_15.png|||Comment: apart from non-query-fact regions: here attention inside and also between regions of all tokens to subject and property tokens, most strongly to subject of last fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_0-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_0-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_0-prompt_15.png|||Comment: apart from that mostly noise in and between blocks
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_9-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_9-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_9-prompt_15.png|||Comment: again outside of these regions very strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_10-prompt_15.png|||Comment: tokens attending to themselves (diagonal)
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_10-prompt_15.png|||Comment: again all tokens of second block attending to subject and property of last fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_10-prompt_15.png|||Comment: tokens in non-query-fact regions attend to properties of premise and consequence of if-statement
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_10-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_10-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_11-prompt_15.png|||Comment: again only very strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_2-prompt_15.png|||Comment: only very strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_0-prompt_15.png|||Comment: fact tokens attending to themselves
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_0-prompt_15.png|||Comment: implicit if-statement tokens attending in no clear pattern
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_0-prompt_15.png|||Comment: if-statement attending to properties at end of both its premise and consequence
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_0-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_0-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_3-prompt_15.png|||Comment: very slightly
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_3-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_3-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_3-prompt_15.png|||Comment: but mostly: very strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_6-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_6-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_6-prompt_15.png|||Comment: again outside of these regions very strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_5-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_5-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_5-prompt_15.png|||Comment: again outside of these regions very strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_9-prompt_15.png|||Comment: no clear pattern except:
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_9-prompt_15.png|||Comment: vertical lines at sep tokens
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_9-prompt_15.png|||Comment: in-block region attention: mostly attention of several tokens to properties inside block (also some outside block)
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_11-prompt_15.png|||Comment: only strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_8-prompt_15.png|||Comment: no clear pattern, except for dots attending to first token of implicit if-statement
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_8-prompt_15.png|||Comment: tokens of premise and consequence attending to property of premise
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_8-prompt_15.png|||Comment: also strong attention to tokens outside of main diagonal block regions: tokens of second block attending to property of premise of if-statement
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_8-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_8-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_10-prompt_15.png|||Comment: vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_10-prompt_15.png|||Comment: again attention inside (ans slightly outside) blocks of several tokens (mostly 'is' and delimiters) to subject and properties in block
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_4-prompt_15.png|||Comment: attention inside blocks, interestingly mostly to subject and property blocks, at least clearly in second block
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_4-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject and 'is' token
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_4-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_6-prompt_15.png|||Comment: tokens attending to themselves and other similar structures, i.e. form 'subject is property' attends to other similar forms
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_6-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject and 'is' token
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_6-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_2-prompt_15.png|||Comment: attention inside blocks, interestingly, some further subdivision between facts and implicit rule in second block region, at least in the horizontal direction
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_2-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_2-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_7-prompt_15.png|||Comment: again attention inside second block: tokens attending to subjects and properties, mostly to nearby ones
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_7-prompt_15.png|||Comment: again if-statement attending to properties of both premise and consequence
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_7-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_7-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_3-prompt_15.png|||Comment: again attention inside block regions, even more clear subdivision between facts and rule in second block
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_3-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_3-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_1-prompt_15.png|||Comment: no clear pattern here
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_1-prompt_15.png|||Comment: if-statement attending to subject and property tokens of its own statements
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_1-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject and 'is' token
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_1-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_10-prompt_15.png|||Comment: strong vertical lines except for where attention is given to other tokens (of course since sum has to be 1 (attentions are normalized))
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_10-prompt_15.png|||Comment: block regions attending to their own tokens, albeit mostly to subject and properties of their statements, no so much to 'is' and delimiters
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_11-prompt_15.png|||Comment: attention inside block regions
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_11-prompt_15.png|||Comment: no notable (sub) patterns inside of blocks
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_11-prompt_15.png|||Comment: again vertical lines
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_3-prompt_15.png|||Comment: again attention patterns mostly inside block regions, although only if-statement and query fact in thoery regions are hot
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_3-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_3-prompt_15.png|||Comment: again  cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_9-prompt_15.png|||Comment: attention inside of block regions determined by seperation of theory into statements
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_9-prompt_15.png|||Comment: most notably statements attending to their own property (at the end of the statement)
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_9-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_9-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_5-prompt_15.png|||Comment: second block region: attention of all tokens (except delimiters between statements i.e. facts and implicit rule) to all subjects and properties in this block
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_5-prompt_15.png|||Comment: if-statement attends to last property tokens of both premise and consequence
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_5-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.9.attn.hook_pattern-head_5-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_6-prompt_15.png|||Comment: tokens very slightly attending to previous tokens in statement
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_6-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_6-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_7-prompt_15.png|||Comment: again cls tokens, as well as query fact in theory (but here only the preceding dot) and in query attend to query fact in query
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_7-prompt_15.png|||Comment: again cls tokens, and query fact in theory (but here only the preceding dot) and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_7-prompt_15.png|||Comment: delimiters and 'is' attend to tokens in tokens in second block (implicit if-statement block)
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_7-prompt_15.png|||Comment: in if-statement block region: minecraft pig pattern: delimiters 'if' and 'then' attending to following and/or preceding statement(s) (premise and consequence)
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_7-prompt_15.png|||Comment: subject of statements attend to body of premise and consequence
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_7-prompt_15.png|||Comment: 'is' of statements attends to body or premise and consequence but most strongly to subject and property of those statements
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_8-prompt_15.png|||Comment: strong vertical lines, but not at location of blocks (regions separated by lines at positions of query fact in theory and query)
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_8-prompt_15.png|||Comment: at these blocks strong attention to tokens inside that block, weak attention to tokens in other block
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_5-prompt_15.png|||Comment: similar to delimiters in if-statement, now delimiters attending to statement right after them
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_5-prompt_15.png|||Comment: 'if' attending to the premise
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_5-prompt_15.png|||Comment: 'then' attending to the consequence
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_5-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its 'is' token
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_5-prompt_15.png|||Comment: again cls tokens, and query fact in theory and query attend to cls tokens and last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_4-prompt_15.png|||Comment: strong vertical lines
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_4-prompt_15.png|||Comment: attention only in block regions which are not the regions including the query fact
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_4-prompt_15.png|||Comment: then attends strongly to 'if'
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_0-prompt_15.png|||Comment: delimiters attending to later tokens, most strongly to 'is' token of following statement
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_0-prompt_15.png|||Comment: again cls tokens attending to query region
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_0-prompt_15.png|||Comment: again leakage at query fact in theory postion into query region, also at position of last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_0-prompt_15.png|||Comment: interestingly strongest attention to 'is' token of query fact for all these positions
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_3-prompt_15.png|||Comment: again attention in block form in lower triangular part for if-statement
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_3-prompt_15.png|||Comment: strong vertical sep-lines
+Folder: prompt-15 (type 1)|||File: blocks.5.attn.hook_pattern-head_8-prompt_15.png|||Comment: vertical lines, for the first time with clear leakage, strangely enough just before start of query, as well as inside query 'block'
+Folder: prompt-15 (type 1)|||File: blocks.5.attn.hook_pattern-head_8-prompt_15.png|||Comment: carpenter's square-pattern: previous token (i.e. dot before fact or token before start of consequence) attends to following statement (i.e. fact), statement attends to property at end of statement
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_1-prompt_15.png|||Comment: no super clear patterns
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_1-prompt_15.png|||Comment: in if-statement tokens in premise and consequence attending to next token
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_1-prompt_15.png|||Comment: is and dots attending to next dot and is respectively
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_4-prompt_15.png|||Comment: tokens attend to previous token, except some delimiters attending to sep tokens
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_5-prompt_15.png|||Comment: attention in blocks: regions are determined by horizontal and vertical lines at query fact in theory, as well as the vertical sep-lines: a lot of noise in blocks on main diagonal, no noise outside of these regions
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_7-prompt_15.png|||Comment: again tokens attending to previous tokens, most strongly subject and properties to respecitively delimiters and 'is' like before
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_7-prompt_15.png|||Comment: agains cls tokens attending to whole query region
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_7-prompt_15.png|||Comment: leakage at query fact in theory position in to query region bordered by vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_8-prompt_15.png|||Comment: a lot of noise, with 'is' attending to consecutive dot, subjects attending to consecutive 'is'
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_8-prompt_15.png|||Comment: relevant (no in common part) of rule attends to 'are' token
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_8-prompt_15.png|||Comment: premise attends to 'then' following it starting the consequence
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_8-prompt_15.png|||Comment: like often seen previously, also leakage at last dot of theory (maybe aggregation of representation of theory here?)
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_8-prompt_15.png|||Comment: leakage into query region at query fact in theory position
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_0-prompt_15.png|||Comment: continued block forming and sub blocks/regions: still lower triangular, but now if-statement divided into premise and consequence, also fact region split in individual facts
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_0-prompt_15.png|||Comment: start of vertical lines dividing statements into their own regions, although still attention of nearby tokens stronger (somewhat of diagonal pattern inside of vertical pattern)
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_9-prompt_15.png|||Comment: lower triangular pattern: tokens attending to previous token(s), most notably statements attend to preceding delimiter, i.e. fact to preceding dot, consequence of rule to preceding comma, etc.
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_11-prompt_15.png|||Comment: 'is' attends to subject in both premise and consequence of it-statement
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_11-prompt_15.png|||Comment: -again cls tokens and subject of query fact in theory and in query and last dot of theory attending to first 2 cls tokens
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_11-prompt_15.png|||Comment: cls tokens attend to query region, as well as last dot of theory
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_11-prompt_15.png|||Comment: leakage into query region at position of query fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_11-prompt_15.png|||Comment: last dot of theory also again attends to query region (and itself)
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_6-prompt_15.png|||Comment: slight attention in small blocks on mail diagonal
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_6-prompt_15.png|||Comment: strong vertical sep-lines
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_6-prompt_15.png|||Comment: cls tokens attend to whole query region
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_7-prompt_15.png|||Comment: again vertical dotted [sep] lines, again more strongly and more weak for respectively subject or property and delimiters and 'is'
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_7-prompt_15.png|||Comment: delimiters and 'is' attending to delimiters (but comma not attending to other delimiters besides comma)
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_9-prompt_15.png|||Comment: subject and 'is' attend to the property, i.e. 'dave' and 'is' attend to 'cold'
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_9-prompt_15.png|||Comment: properties (i.e. 'cold') attend to [CLS] token
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_11-prompt_15.png|||Comment: 'is' attends to '.' of previous statement and subject of current statement
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_11-prompt_15.png|||Comment: most strongly property attends to subject
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_11-prompt_15.png|||Comment: '.' of current statement attends slightly to subject and 'is' of current statement
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_11-prompt_15.png|||Comment: - again subjects attending to [CLS] token albeit weakly
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_0-prompt_15.png|||Comment: start of formation of vertical lines at [sep] tokens
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_0-prompt_15.png|||Comment: tokens attend to tokens with the same meaning (similar semantics) i.e. someone -> someone, people; if -> if; is -> is, are (and vice versa); dots -> dots; etc.
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_0-prompt_15.png|||Comment: results in diagonal pattern only strongly for entailed fact and noticeably only for query -> theory and theory -> query, i.e. not theory -> theory
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_1-prompt_15.png|||Comment: clearer formation of vertical lines at [sep] tokens
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_1-prompt_15.png|||Comment: similar square pattern around tokens starting and ending query (attend to each other and themselves)
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_1-prompt_15.png|||Comment: tokens attend to semantically similar tokens (i.e. properties to properties, subject to subject etc.), albeit less clear than with previous attention heads
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_2-prompt_15.png|||Comment: delimiters (i.e. dots) attending to (same) delimiters: dots to dots, comma to comma
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_2-prompt_15.png|||Comment: also strnagely enough other tokens attending to dots, but most noticeable (more strongly) at entailed fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_2-prompt_15.png|||Comment: formation of vertical lines
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_2-prompt_15.png|||Comment: very strong attention from [sep] to [sep] tokens
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_2-prompt_15.png|||Comment: less attention to [sep] tokens when already attended to previous tokens
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_3-prompt_15.png|||Comment: most of tokens in if-statements (part differing across if-statements) attends to property token in consequence of if-statements
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_3-prompt_15.png|||Comment: L-pattern for facts: previous dot, subject and is attend to property, is also attends to dot at end of fact
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_4-prompt_15.png|||Comment: [sep] tokens attending to first [cls] token
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_4-prompt_15.png|||Comment: strong vertical lines, almost no noise, except for in the query block
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_5-prompt_15.png|||Comment: some subjects and properties attend to first [cls] token
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_5-prompt_15.png|||Comment: subject of entailed fact attends [cls[] token at end of query, as does the subject otken of the query itself -> also for example with 1 reasoning step => not related to knowledge of this fact being in the query
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_5-prompt_15.png|||Comment: every time a consecutive pair of ('is', property) appears, the property token attends to the subject token as well (like the 'is' token does as it attends to the previous token) and does not attend to the 'is' token as it would do in case of following the general rule
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_5-prompt_15.png|||Comment: in general tokens attend to the previous token
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_6-prompt_15.png|||Comment: bottom-left-corner pattern for tokens similar to the form 'subject is' in if-statements, both premise and consequence: subject and 'is'attend to subject and is also attends to 'is'
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_6-prompt_15.png|||Comment: subjects and properties attend to first [cls] token
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_6-prompt_15.png|||Comment: vertical dotted lines (strong attention to [sep] token when token attending is property or subject, weak attention when token attending is delimiter or 'is')
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_6-prompt_15.png|||Comment: delimiters attending to delimiters and 'is' attending to 'is' (and semantically similar tokens like 'are')
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_10-prompt_15.png|||Comment: O-pattern for facts (which are not in query):
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_10-prompt_15.png|||Comment: preceding dot attends to following fact
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_10-prompt_15.png|||Comment: its 'is' token attends to the fact
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_10-prompt_15.png|||Comment: subject attends to subject and property, but NOT to 'is'
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_10-prompt_15.png|||Comment: cls tokens attending to 'is' and property of query fact in query
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_10-prompt_15.png|||Comment: also query fact in theory attending to these 2 tokens of query fact in query
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_10-prompt_15.png|||Comment: also again last dot attending to these 2 tokens of query fact in query
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_10-prompt_15.png|||Comment: also query fact itself attending to these two tokens of query fact in query
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_10-prompt_15.png|||Comment: subject and 'is' in premise and consequence attending to following property
+Folder: prompt-15 (type 1)|||File: blocks.10.attn.hook_pattern-head_4-prompt_15.png|||Comment: only very strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_2-prompt_15.png|||Comment: again attention patterns mostly inside block regions
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_2-prompt_15.png|||Comment: cls tokens, and query fact in theory and query attend to query facts in theory and query, most strongly to its subject
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_2-prompt_15.png|||Comment: furthermore tokens attending to next token, but not only to next token, also to other tokens of the same type as the next one (i.e. if a delimiter attends to its next token, being a subject, it also attends to several other subjects, albeit only in the theory)
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_10-prompt_15.png|||Comment: 'is' and '.' attend to nearby property tokens
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_10-prompt_15.png|||Comment: properties attend to nearby dots
+Folder: prompt-15 (type 1)|||File: blocks.3.attn.hook_pattern-head_8-prompt_15.png|||Comment: again all tokens attending to [SEP] and [CLS] tokens
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_1-prompt_15.png|||Comment: strong vertical sep lines
+Folder: prompt-15 (type 1)|||File: blocks.8.attn.hook_pattern-head_1-prompt_15.png|||Comment: further mostly noise
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_11-prompt_15.png|||Comment: tokens attend to previous token, except for delimiters (except for comma) which attend to [sep] tokens
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_1-prompt_15.png|||Comment: mostly noise, with some patterns, these are similar to early sean patterns, i.e. tokens types attending to other token types i.e. 'is' to subjects
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_1-prompt_15.png|||Comment: 'then' attending to 'if' of same if-statement
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_2-prompt_15.png|||Comment: block-region forming: lower-triangular pattern with 3 large triangles on their right-angle side: tokens attend to all previous tokens inside their own block-regions (i.e. fact-tokens attend to all previous fact-tokens, including previous facts, but not earlier if-statement)
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_3-prompt_15.png|||Comment: strong vertical lines
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_3-prompt_15.png|||Comment: no clear pattern: tokens from inside a statement attend to other tokens inside that statement, but not similarly across statements
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_4-prompt_15.png|||Comment: [cls] tokens attend to subject of query fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_4-prompt_15.png|||Comment: also query fact in theory and in query attends to subject of query fact in theory, but also slightly to property of query fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_4-prompt_15.png|||Comment: again block forming with lower triangular pattern: tokens attending to previous tokens inside block with similar statements
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_4-prompt_15.png|||Comment: sub patterns: 'is' and property attend to their subject
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_5-prompt_15.png|||Comment: not super clear but subject and 'is' attend to their property, most strongly in premise and consequence of if-statement
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_6-prompt_15.png|||Comment: tokens attending to next token: 'is' to property and previous dot to subject
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_7-prompt_15.png|||Comment: mostly noise, some vertical lines, but not for consistent token types
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_7-prompt_15.png|||Comment: both query fact in theory and in query attend to last fact, unrelated to query fact
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_9-prompt_15.png|||Comment: sometimes property of fact also attends to 'is'
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_9-prompt_15.png|||Comment: entailed fact attends to [cls] tokens
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_9-prompt_15.png|||Comment: "subject is" attends to previous token, i.e. 'if' for premise of if-statement, dot for fact, etc.
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_10-prompt_15.png|||Comment: 'is' and property of premise attend to subject of premise
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_10-prompt_15.png|||Comment: 'then' attends to 'if'
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_10-prompt_15.png|||Comment: 'is' and property attend to both 'then' and subject of consequence
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_10-prompt_15.png|||Comment: again [cls] tokens and query fact in both theory and query attending to subject and property of query fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_0-prompt_15.png|||Comment: consequence attending to premise
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_0-prompt_15.png|||Comment: delimiter before query fact in theory and subject of fact attend to subject of fact in theory, similar attention from query fact in query to query fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_0-prompt_15.png|||Comment: 'is' and more strongly property of query fact in theory attend to that same property of this fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_0-prompt_15.png|||Comment: [cls] tokens attend to subject of query fact in theory
+Folder: prompt-15 (type 1)|||File: blocks.6.attn.hook_pattern-head_8-prompt_15.png|||Comment: 'if' attends strongly to 'then'
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_2-prompt_15.png|||Comment: again cls-tokens attending to query fact in query
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_2-prompt_15.png|||Comment: query fact in theory and query attend to each other => also leakage into query region (between sep-lines), only for this statement though
+Folder: prompt-15 (type 1)|||File: blocks.7.attn.hook_pattern-head_2-prompt_15.png|||Comment: again tokens attending to next token
+Folder: prompt-15 (type 1)|||File: blocks.5.attn.hook_pattern-head_0-prompt_15.png|||Comment: facts and rules attend to property at the end of themselves (property is always last token of a fact or rule (excluding delimiters))
+Folder: prompt-15 (type 1)|||File: blocks.5.attn.hook_pattern-head_0-prompt_15.png|||Comment: if-statement seems to sort of split attention into premise attending to property at end of premise and consequence attending to property at end of consequence
+Folder: prompt-15 (type 1)|||File: blocks.4.attn.hook_pattern-head_3-prompt_15.png|||Comment: tokens attend to the same tokens, also at different positions => again diagonal at position of query fact which is also in the theory
+Folder: prompt-15 (type 1)|||File: blocks.0.attn.hook_pattern-head_2-prompt_15.png|||Comment: similar to a0.3 in d0
+Folder: prompt-15 (type 1)|||File: blocks.0.attn.hook_pattern-head_2-prompt_15.png|||Comment: strong attention to [cls] token at the end of the input by tokens at the end of the input
+Folder: prompt-15 (type 1)|||File: blocks.0.attn.hook_pattern-head_2-prompt_15.png|||Comment: strong attention to (second) [cls] token at the beginning of the input by tokens at the beginning of the input
+Folder: prompt-15 (type 1)|||File: blocks.0.attn.hook_pattern-head_2-prompt_15.png|||Comment: tokens attend to previous token
+Folder: prompt-15 (type 1)|||File: blocks.0.attn.hook_pattern-head_2-prompt_15.png|||Comment: also slightly staircase-like pattern: dot attends to previous previous token and itself as well, also next next token attends to dot
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_1-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_7-prompt_17.png|||Comment: again slightly vertical line
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_8-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_0-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_9-prompt_17.png|||Comment: again slight vertical line
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_9-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_10-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_11-prompt_17.png|||Comment: again only slight vertical line
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_11-prompt_17.png|||Comment: (and some if-statement tokens attending very slightly)
+-> both noise really
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_0-prompt_17.png|||Comment: very different pattern: now follows same diaongal type pattern, whereas for prompt 15 vertical pattern of whole statemetn attending to properties of premise and consequence
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_0-prompt_17.png|||Comment: similar pattern as for 'gary is quiet' for prompt 15 (where it is irrelevant)
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_0-prompt_17.png|||Comment: strong attention seems to have shifted from last token (property) in theory to what is now last (irrelevant) token (property) in theory
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_0-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_2-prompt_17.png|||Comment: only noticeable difference is this vertical line appearing(but very slightly, perhaps even insignificant
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_3-prompt_17.png|||Comment: again this line appearing, now also horizontal, and compared to intensity of other attentions relevant to prompt, not insignicant, although maybe these are insignificant themselves
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_3-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_6-prompt_17.png|||Comment: again vertical line, again mostly in regions where there is no attention to other tokens (except sep tokens)
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_6-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_5-prompt_17.png|||Comment: now some significantly strong attention in if-statement
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_5-prompt_17.png|||Comment: again vertical lines, but now shorter: not in horizontal regions where there is already attention to other tokens
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_5-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_9-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_9-prompt_17.png|||Comment: if-statement relevant = little to no attention in this block in this case
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_8-prompt_17.png|||Comment: also new
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_8-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_8-prompt_17.png|||Comment: again very different if-statement pattern
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_8-prompt_17.png|||Comment: interestingly similar to the one for the previous heads (a9.2, a9.3, a9.0, a 9.1, a9.4, a9.7)
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_2-prompt_17.png|||Comment: again quite different if-statement pattern
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_2-prompt_17.png|||Comment: interestingly 'if' attends very strongly to itself
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_2-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_10-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_10-prompt_17.png|||Comment: if-statement relevant = little to no attention in this block in this case
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_4-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_4-prompt_17.png|||Comment: again very different if-statement pattern
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_4-prompt_17.png|||Comment: interestingly similar to the one for the previous heads (a9.2, a9.3, a9.0, a 9.1)
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_6-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_6-prompt_17.png|||Comment: again very different if-statement pattern
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_7-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_7-prompt_17.png|||Comment: again very different if-statement pattern
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_7-prompt_17.png|||Comment: interestingly similar to the one for the previous heads (a9.2, a9.3, a9.0, a 9.1, a9.4)
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_3-prompt_17.png|||Comment: again very different if-statement pattern
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_3-prompt_17.png|||Comment: interestingly very similar to the one for the previous head (a9.2)
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_3-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_8-prompt_17.png|||Comment: again now attention as statement irrelevant
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_8-prompt_17.png|||Comment: again no attention as these statements relevant
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_8-prompt_17.png|||Comment: stronger leakage
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_1-prompt_17.png|||Comment: again quite different: instead of whole if-statement attending to certain tokens, differen pattern, similar subpattern for premise and consequence
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_1-prompt_17.png|||Comment: very strong attention form 'they' to 'someone' which it refers to
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_1-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_10-prompt_17.png|||Comment: again less attention in if-statement apart from 1 pixel: they attending to 'someone'which it refers to
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_10-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_11-prompt_17.png|||Comment: again less attention in if-statement apart from 1 pixel: 'someone' attending to itself
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_11-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_9-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_9-prompt_17.png|||Comment: noticeable strong attention from 'if' to 'then' and way weaker attention from and to other tokens in if-statement
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_3-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_6-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_7-prompt_17.png|||Comment: if-statement attending differently
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_7-prompt_17.png|||Comment: again relevant fact attending as relevant part, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_5-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_5-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_5-prompt_17.png|||Comment: again very different if-statement pattern
+Folder: prompt-17 (type 3)|||File: blocks.9.attn.hook_pattern-head_5-prompt_17.png|||Comment: interestingly similar to the one for the previous heads (a9.2, a9.3, a9.0, a 9.1, a9.4)
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_4-prompt_17.png|||Comment: if-statement attending differently
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_4-prompt_17.png|||Comment: again relevant fact attending as relevant part, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_3-prompt_17.png|||Comment: overal same pattern but these two attentions way stronger (twice as strong)
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_0-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_1-prompt_17.png|||Comment: different pattern for if-statement
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_1-prompt_17.png|||Comment: now same L-pattern for this fact as for other non-relevant facts as now it is also not relevant
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_1-prompt_17.png|||Comment: interestingly useful parts of premise and consequence (the parts that differ between premises and consequences = 'is' and property, but mostly property) attend to relevant fact and query now as well, as now the if-statement is also relevant, not for prompt 15
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_1-prompt_17.png|||Comment: notice this attention to the query (and relevant fact in the theory) by the last dot of the theory however has stayed the same (but now shifted to relevant fact in theory)
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_1-prompt_17.png|||Comment: block forming shifted, now all 'gary is ...' facts attend slightly to each other
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_4-prompt_17.png|||Comment: again if-statement seeping into query region
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_4-prompt_17.png|||Comment: more attention (noise) between relevant fact in theory and query
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_4-prompt_17.png|||Comment: shifted to relevant part, not anymore at 'erin is rough'
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_4-prompt_17.png|||Comment: 'is' attends to itself, where previously property to subject of premise
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_4-prompt_17.png|||Comment: now consequence attends to premise, where previously only to itself
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_5-prompt_17.png|||Comment: no sub blocks in if-statement anymore, also less attention
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_5-prompt_17.png|||Comment: attends again as now not relevant anymore
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_5-prompt_17.png|||Comment: no attention anymore in relevant part
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_7-prompt_17.png|||Comment: query attending to 'is' of relevant fact in theory
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_7-prompt_17.png|||Comment: relevant tokens and cls tokens attending to relevant premise
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_7-prompt_17.png|||Comment: leakage at relevant fact into query
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_7-prompt_17.png|||Comment: leakage at relevant if-statement into query
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_8-prompt_17.png|||Comment: if-statement attending and attended to differently
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_8-prompt_17.png|||Comment: now irrelevant fact acting the same as other irrelevant parts of input
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_8-prompt_17.png|||Comment: leakage at relevant if-statement into query
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_8-prompt_17.png|||Comment: leakage at relevant fact into query
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_8-prompt_17.png|||Comment: also relevant fact attended to by itself and query, as well as cls tokens
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_0-prompt_17.png|||Comment: only this vertical lines different: where previously there was no attention form 'erin is rough' to the dot it attends to, there is now
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_0-prompt_17.png|||Comment: no subblocks in if-statement
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_0-prompt_17.png|||Comment: no strong attention to preceding dot like for prompt 15, but start of block forming, now for this last fact, where previously for the relevant fact for prompt 15 (in another location)
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_9-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_11-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_6-prompt_17.png|||Comment: leakage at relevant if-statement into query
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_6-prompt_17.png|||Comment: leakage at relevant fact into query
+Folder: prompt-17 (type 3)|||File: blocks.3.attn.hook_pattern-head_0-prompt_17.png|||Comment: here already clear that query fact is not in theory
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_10-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact (i.e. irrelevant fact now also O-pattern, relevant fact now also attending to 'is' and property of query)
+Folder: prompt-17 (type 3)|||File: blocks.10.attn.hook_pattern-head_4-prompt_17.png|||Comment: again vertical line
+Folder: prompt-17 (type 3)|||File: blocks.8.attn.hook_pattern-head_2-prompt_17.png|||Comment: again if-statement and relevant fact attending as relevant parts, now irrelevant fact attending like an irrelevant fact
+Folder: prompt-17 (type 3)|||File: blocks.3.attn.hook_pattern-head_10-prompt_17.png|||Comment: less pronounced than prompt 15
+Folder: prompt-17 (type 3)|||File: blocks.3.attn.hook_pattern-head_10-prompt_17.png|||Comment: more pronounced than prompt 15
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_11-prompt_17.png|||Comment: only here difference, where previously you could see a 3-pixel triangle (like in query to query attention), the diagonal pattern simply continues here, as this fact is this time not relevant
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_1-prompt_17.png|||Comment: vertical pattern shifted from relevant subject for prompt 15 to relevant subject for this query (gary) in theory
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_2-prompt_17.png|||Comment: in this region now also attention, not for prompt 15
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_2-prompt_17.png|||Comment: picks up on property 'cold' being relevant
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_2-prompt_17.png|||Comment: less pronounced
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_3-prompt_17.png|||Comment: property now gives attention to itself as well, not for prompt 15
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_3-prompt_17.png|||Comment: no leakage at query property position into query region
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_4-prompt_17.png|||Comment: picks up on if-statement being important
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_4-prompt_17.png|||Comment: picks up on this fact being not as important
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_4-prompt_17.png|||Comment: cls tokens and similar (and relevant) token sequences attending to relevant query has shifted to relevant query
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_5-prompt_17.png|||Comment: picks up on this fact being important
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_5-prompt_17.png|||Comment: picks up on fact being not important compared to prompt 15
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_5-prompt_17.png|||Comment: premise has become less important, consequence stays important
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_6-prompt_17.png|||Comment: property has become more important
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_6-prompt_17.png|||Comment: last dot of theory attends to subject of query
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_7-prompt_17.png|||Comment: attends to relevant fact for prompt 15, whereas for prompt 15 the head attends to the relevant fact for this query
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_7-prompt_17.png|||Comment: interestingly, now the if-statement is more important and the fact relevant for prompt 15 less (these respectively do and do not attend)
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_9-prompt_17.png|||Comment: quiet not attending to 'is'
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_9-prompt_17.png|||Comment: attention to subject of relevant fact is new
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_9-prompt_17.png|||Comment: this angle is different, property attending to subject and 'is' instead of preceding dot
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_9-prompt_17.png|||Comment: now attention to 'quiet' instead of 'then'
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_10-prompt_17.png|||Comment: again attention (by relevant tokens and cls tokens) to property of consequence (which is relevant)
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_10-prompt_17.png|||Comment: this pattern shifted from relevant fact for prompt 15 to relevant fact for this prompt
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_10-prompt_17.png|||Comment: almost no attention in if-statement
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_0-prompt_17.png|||Comment: also changed compared to prompt 15, seems to pick up on properties (and 'is') tokens which are relevant to the prediction, in both fact in theory and query and if-statements
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_0-prompt_17.png|||Comment: shifted compared to prompt 15 to relevant fact => picks up on relevant subject
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_8-prompt_17.png|||Comment: attention by relevant statements to subject of relevant fact in theory
+Folder: prompt-17 (type 3)|||File: blocks.6.attn.hook_pattern-head_8-prompt_17.png|||Comment: same property as in query in if-statement is attended to by itself and property in query
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_2-prompt_17.png|||Comment: no block forming anymore but continuation of diagonal pattern like for other parts of theory
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_2-prompt_17.png|||Comment: again slight attention to query from if-statement
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_2-prompt_17.png|||Comment: no continuation of diagonal pattern for 'gary is quiet' anymore, but now cross attention  and block region as this is now a relevant fact
+Folder: prompt-17 (type 3)|||File: blocks.7.attn.hook_pattern-head_2-prompt_17.png|||Comment: attention from extra (relevant) parts to 'quiet'
+Folder: prompt-17 (type 3)|||File: blocks.4.attn.hook_pattern-head_3-prompt_17.png|||Comment: more pronounced
+Folder: prompt-17 (type 3)|||File: blocks.4.attn.hook_pattern-head_3-prompt_17.png|||Comment: picks up on the property of the consequence being the same as the one of the query
+Folder: prompt-17 (type 3)|||File: blocks.4.attn.hook_pattern-head_3-prompt_17.png|||Comment: picks up on the fact in the theory and the query having the same subject (and 'is' token) (but not the same property)
+Folder: prompt-18 (type 4)|||File: blocks.10.attn.hook_pattern-head_1-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.10.attn.hook_pattern-head_8-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.10.attn.hook_pattern-head_0-prompt_18.png|||Comment: again attention from relevant tokens to 'not' albeit slightly, definitely compared to previous heads in this layer 9 and layer 8
+Folder: prompt-18 (type 4)|||File: blocks.10.attn.hook_pattern-head_0-prompt_18.png|||Comment: interestingly patterns to and from relevant tokens for tyupe 3 (prompt 17) have disappeared
+Folder: prompt-18 (type 4)|||File: blocks.10.attn.hook_pattern-head_9-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.10.attn.hook_pattern-head_9-prompt_18.png|||Comment: resulting in less strong attention patterns as compared to promtp 17, but these pattersn ahve not completely disappeared
+Folder: prompt-18 (type 4)|||File: blocks.10.attn.hook_pattern-head_10-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_0-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.10.attn.hook_pattern-head_3-prompt_18.png|||Comment: again patterns to and from relevant tokens as present in prompt 17 (type 3) have disappeared, but this time no attention to 'not' token in query
+Folder: prompt-18 (type 4)|||File: blocks.10.attn.hook_pattern-head_5-prompt_18.png|||Comment: interestingly here also relatively strong attention of relevant statements for type 3 (proving the contrary to the query here) to 'not' token, but contrary to previous heads, here not at the expense of attention patterns to and from relevant statements for type 3
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_9-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_11-prompt_18.png|||Comment: again attention from relevant tokens to 'not' albeit slightly, definitely compared to previous heads in this layer and layer 8
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_8-prompt_18.png|||Comment: interestingly here also relatively strong attention of relevant statements for type 3 (proving the contrary to the query here)  to 'not' token, but contrary to previous heads, here not at the expense of attention patterns to and from relevant statements for type 3
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_2-prompt_18.png|||Comment: again, even though now attention only really weak from relevant tokens to 'not', still at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_4-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_6-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_7-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_3-prompt_18.png|||Comment: again strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_1-prompt_18.png|||Comment: very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.8.attn.hook_pattern-head_11-prompt_18.png|||Comment: attention from relevant tokens to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.8.attn.hook_pattern-head_9-prompt_18.png|||Comment: very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.8.attn.hook_pattern-head_7-prompt_18.png|||Comment: strong attention from relevant tokens to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.9.attn.hook_pattern-head_5-prompt_18.png|||Comment: again very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared (most likely a good sign)
+Folder: prompt-18 (type 4)|||File: blocks.8.attn.hook_pattern-head_8-prompt_18.png|||Comment: strong attention from relevant tokens to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_3-prompt_18.png|||Comment: again relevant tokens attending to 'not' in query
+Folder: prompt-18 (type 4)|||File: blocks.8.attn.hook_pattern-head_5-prompt_18.png|||Comment: very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared
+Folder: prompt-18 (type 4)|||File: blocks.8.attn.hook_pattern-head_4-prompt_18.png|||Comment: not attending to relevant subject in fact in theory
+Folder: prompt-18 (type 4)|||File: blocks.8.attn.hook_pattern-head_0-prompt_18.png|||Comment: no leakage form relevant tokens into query region anymore (except for attending to 'not' token)
+Folder: prompt-18 (type 4)|||File: blocks.8.attn.hook_pattern-head_0-prompt_18.png|||Comment: if-statement attends and is attended to way less
+Folder: prompt-18 (type 4)|||File: blocks.8.attn.hook_pattern-head_0-prompt_18.png|||Comment: very strong attention from relevant tokens to 'not', at the expense of other attentions, some patterns have disappeared
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_1-prompt_18.png|||Comment: again relevant tokens attending to 'not' in query
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_4-prompt_18.png|||Comment: again relevant tokens attending to 'not' in query
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_5-prompt_18.png|||Comment: again relevant tokens attending to 'not' in query
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_7-prompt_18.png|||Comment: also not attending strongly to some relevant tokens itself
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_7-prompt_18.png|||Comment: again relevant tokens attending to 'not' in query
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_0-prompt_18.png|||Comment: again relevant tokens attending to 'not' in query
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_9-prompt_18.png|||Comment: again relevant tokens attending to 'not' in query
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_11-prompt_18.png|||Comment: 'not' attends to subject
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_6-prompt_18.png|||Comment: again relevant tokens attending to 'not' in query
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_9-prompt_18.png|||Comment: not attends together with other first tokens of query to property of query
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_11-prompt_18.png|||Comment: similarly as in prompt 17 tokens of query after subject attends to subject (now thus including 'not')
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_0-prompt_18.png|||Comment: does not seem to take notion of  'not' except here
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_4-prompt_18.png|||Comment: not seems less important than subject and property, but more important than 'is' -> make sense as it says less about the world than a subject paired with a property, but more than 'is', which is simply a connective or indication of a proposition about the subject to connect the property with the subject
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_5-prompt_18.png|||Comment: property attends strongly to 'not' (which negates that property)
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_6-prompt_18.png|||Comment: -  again not more important than 'is' but less so than the subjext and property
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_6-prompt_18.png|||Comment: interestingly attends to 'if'
+Folder: prompt-18 (type 4)|||File: blocks.7.attn.hook_pattern-head_10-prompt_18.png|||Comment: again relevant tokens attending to 'not' in query
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_10-prompt_18.png|||Comment: property also attends to not
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_10-prompt_18.png|||Comment: again not attends to its property
+Folder: prompt-18 (type 4)|||File: blocks.3.attn.hook_pattern-head_8-prompt_18.png|||Comment: is attends to 'not', useful as 'not' says something about whether the subject is or is not of course
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_11-prompt_18.png|||Comment: big and important difference: 'is' and 'not' attend strongly to subject of query, and now also again property of query attending strongly to 'not' once more
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_2-prompt_18.png|||Comment: important difference with prompt 17: 'not' attends to 'cold', same property as in query, but of course here cold is not negated => might be key and first indication/connection/reasoning step to the fact that query is not entailed
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_3-prompt_18.png|||Comment: once more query property attends to not
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_4-prompt_18.png|||Comment: last dot of theory and dot of query attend to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_5-prompt_18.png|||Comment: cls tokens and two dots attend to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_6-prompt_18.png|||Comment: slight relevant attentions to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_7-prompt_18.png|||Comment: slight relevant attention to 'not'
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_9-prompt_18.png|||Comment: not attending to relevant tokens
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_9-prompt_18.png|||Comment: once more property of query attending to 'not', which refers to property
+Folder: prompt-18 (type 4)|||File: blocks.6.attn.hook_pattern-head_8-prompt_18.png|||Comment: again slight relevant attentions to 'not'
