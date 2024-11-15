@@ -15,7 +15,8 @@ def generate_hf_dataset_from_jsonl(jsonl_file, output_file):
             for question in questions:
                 example = {
                     'input': "[CLS]" + context + "[SEP]" + question['text'] + "[CLS]",
-                    'label': question['label']
+                    'label': question['label'],
+                    'depth': question['meta']['QDep']
                 }
                 examples.append(example)
 
