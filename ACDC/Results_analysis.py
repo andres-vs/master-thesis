@@ -5,7 +5,7 @@ import seaborn as sns
 import numpy as np
 
 # Load the JSON data
-with open('results_acdc_text-entailment_BERT_0.02.json', 'r') as file:
+with open('post_processing/acdc_results_text-entailment_BERT_depth0_t0.02_retrained.json', 'r') as file:
     data = json.load(file)['data']
 
 text = data[0]['text']

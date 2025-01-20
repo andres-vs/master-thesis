@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BERT Architecture Visualization (Vertical Flow)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        svg {
+            width: 100%;
+            height: 3000px; /* Increased height for vertical layout */
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+        }
+        .box {
+            fill: #4CAF50;
+            stroke: #333;
+            stroke-width: 2;
+        }
+        .text {
+            font-size: 10px;
+            fill: #ffffff;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .arrow {
+            stroke: #333;
+            stroke-width: 1;
+            marker-end: url(#arrowhead);
+        }
+    </style>
+</head>
+<body>
+
+<svg id="bert-diagram"></svg>
+
+<script>
+// Configuration
+const config = {
+    svgWidth: 800,
+    svgHeight: 1000,
+    boxWidth: 100,
+    boxHeight: 30,
+    layerGap: 50,
+    startX: 700, // Centered horizontally
+    startY: 25,
+    numEncoderLayers: 12 // Adjust as needed
+};
+
+// Initialize SVG
+const svg = document.getElementById('bert-diagram');
+svg.setAttribute('width', config.svgWidth);
+svg.setAttribute('height', config.svgHeight);
+
+// Define arrowhead marker
+const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+marker.setAttribute("id", "arrowhead");
+marker.setAttribute("markerWidth", "10");
+marker.setAttribute("markerHeight", "7");
+marker.setAttribute("refX", "10");
+marker.setAttribute("refY", "3.5");
+marker.setAttribute("orient", "auto");
+const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+polygon.setAttribute("points", "0 0, 10 3.5, 0 7");
+polygon.setAttribute("fill", "#333");
+marker.appendChild(polygon);
+defs.appendChild(marker);
+svg.appendChild(defs);
+
+// Function to draw a box with text
+function drawBox(x, y, width, height, label) {
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", x);
+    rect.setAttribute("y", y);
+    rect.setAttribute("width", width);
+    rect.setAttribute("height", height);
+    rect.setAttribute("class", "box");
+    svg.appendChild(rect);
+
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", x + width / 2);
+    text.setAttribute("y", y + height / 2);
+    text.setAttribute("class", "text");
+    text.textContent = label;
+    svg.appendChild(text);
+}
+
+// Function to draw an arrow from (x1, y1) to (x2, y2)
+function drawArrow(x1, y1, x2, y2) {
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("x1", x1);
+    line.setAttribute("y1", y1);
+    line.setAttribute("x2", x2);
+    line.setAttribute("y2", y2);
+    line.setAttribute("class", "arrow");
+    svg.appendChild(line);
+}
+
+// Positions for the layers
+const layers = [];
+
+// Input Layer
+// const inputX = config.startX;
+// const inputY = config.startY;
+// drawBox(inputX, inputY, config.boxWidth, config.boxHeight, "Input Tokens");
+// layers.push({ x: inputX, y: inputY, label: "Input Tokens" });
+
+// Embedding Layer
+const embedX = config.startX;
+const embedY = config.startY;// + config.boxHeight + config.layerGap;
+drawBox(embedX, embedY, config.boxWidth, config.boxHeight, "Embedding Layer");
+// drawArrow(
+//     inputX + config.boxWidth / 2,
+//     inputY + config.boxHeight,
+//     embedX + config.boxWidth / 2,
+//     embedY
+// );
+layers.push({ x: embedX, y: embedY, label: "Embedding Layer" });
+
+// Encoder Layers
+let prevX = embedX;
+let prevY = embedY;
+for (let i = 1; i <= config.numEncoderLayers; i++) {
+    const encoderX = prevX;
+    const encoderY = prevY + config.boxHeight + config.layerGap;
+    drawBox(encoderX, encoderY, config.boxWidth, config.boxHeight, `Encoder ${i}`);
+    drawArrow(
+        prevX + config.boxWidth / 2,
+        prevY + config.boxHeight,
+        encoderX + config.boxWidth / 2,
+        encoderY
+    );
+    prevX = encoderX;
+    prevY = encoderY;
+    layers.push({ x: encoderX, y: encoderY, label: `Encoder ${i}` });
+}
+
+// Output Layer
+const outputX = prevX;
+const outputY = prevY + config.boxHeight + config.layerGap;
+drawBox(outputX, outputY, config.boxWidth, config.boxHeight, "Output Layer");
+drawArrow(
+    prevX + config.boxWidth / 2,
+    prevY + config.boxHeight,
+    outputX + config.boxWidth / 2,
+    outputY
+);
+layers.push({ x: outputX, y: outputY, label: "Output Layer" });
+
+// Optionally, add labels or additional decorations
+</script>
+
+</body>
+</html>

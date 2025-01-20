@@ -1,6 +1,7 @@
 import json
 import re
 import networkx as nx
+import pygraphviz as pgv
 import matplotlib.pyplot as plt
 
 # Load the JSON data
@@ -28,7 +29,7 @@ for edge, y_value in zip(text, y_values):
 # Load the filtered pairs
 with open('filtered_pairs.json', 'r') as file:
     filtered_pairs = json.load(file)
-
+print(len(filtered_pairs))
 # Initialize a directed graph
 G = nx.DiGraph()
 
@@ -36,52 +37,60 @@ G = nx.DiGraph()
 for start, end in filtered_pairs:
     G.add_edge(start, end)
 
-# Create a dictionary to store node positions and labels
-pos = {}
+# Create a dictionary to store node labels and colors
 labels = {}
-node_colors = []
+node_colors = {}
 
 # Function to extract layer and head/node number
 def extract_layer_and_number(node):
-    layer = int(re.search(r'blocks\.(\d+)\.', node).group(1))
+    layer_match = re.search(r'blocks\.(\d+)\.', node)
+    layer = int(layer_match.group(1)) if layer_match else 0
     if 'attn' in node:
-        number = int(re.search(r'attn\.hook_(result|q|k|v|q_input|k_input|v_input)\[:, :, (\d+)\]', node).group(2))
+        number_match = re.search(r'attn\.hook_(result|q|k|v|q_input|k_input|v_input)\[:, :, (\d+)\]', node)
+        number = int(number_match.group(2)) if number_match else 0
     elif 'hook_v_input' in node or 'hook_k_input' in node or 'hook_q_input' in node:
-        number = int(re.search(r'hook_(v|k|q)_input\[:, :, (\d+)\]', node).group(2))
-        # print('Node:', node)
-        # print('Number:', number)
-        # print('number type:', type(number))
+        number_match = re.search(r'hook_(v|k|q)_input\[:, :, (\d+)\]', node)
+        number = int(number_match.group(2)) if number_match else 0
     else:
         number = 0  # MLP nodes have only one node per layer
     return layer, number
 
-# Determine positions and labels for each node
+# Determine labels and colors for each node
 for node in G.nodes():
+    layer, number = extract_layer_and_number(node)
     if 'hook_resid_pre' in node:
-        pos[node] = (6, -26)  # Embedding layer
         labels[node] = 'embedding_output'
-        node_colors.append('lightcoral')
+        node_colors[node] = 'lightcoral'
     elif 'hook_resid_post' in node:
-        pos[node] = (6, 0)  # Output layer
         labels[node] = 'encoder_output'
-        node_colors.append('lightcoral')
+        node_colors[node] = 'lightcoral'
+    elif 'attn' in node:
+        labels[node] = f'a{layer}.{number}'
+        node_colors[node] = 'skyblue'
+    elif 'mlp' in node:
+        labels[node] = f'm{layer}'
+        node_colors[node] = 'lightgreen'
     else:
-        # print('Node:', node)
-        layer, number = extract_layer_and_number(node)
-        if 'attn' in node or 'hook_v_input' in node or 'hook_k_input' in node or 'hook_q_input' in node:
-            # print('Node:', node)
-            # print('Layer type:', type(layer))
-            # print('Number type:', type(number))
-            pos[node] = (number, -layer * 2)  # Position: (head number, -layer * 2) for top to bottom
-            labels[node] = f'a{layer}.{number}'
-            node_colors.append('skyblue')
-        elif 'mlp' in node:	
-            pos[node] = (6, -layer * 2 - 1)  # Center MLP nodes
-            labels[node] = f'm{layer}'
-            node_colors.append('lightgreen')
-        
-# Draw the graph
+        labels[node] = node
+        node_colors[node] = 'lightgrey'
+
+# Create a PyGraphviz AGraph
+A = pgv.AGraph(directed=True)
+
+# Add nodes and edges to the AGraph
+for node in G.nodes():
+    A.add_node(node, label=labels[node], style='filled', fillcolor=node_colors[node], shape='rect', width=0.5, height=0.5)
+for start, end in filtered_pairs:
+    A.add_edge(start, end)
+
+# Draw the graph to a file
+A.layout(prog='dot')
+A.draw('circuit_plot.png')
+
+# Display the graph using matplotlib
+img = plt.imread('circuit_plot.png')
 plt.figure(figsize=(12, 26))
-nx.draw(G, pos, labels=labels, with_labels=True, node_size=1000, node_color=node_colors, font_size=10, font_weight='bold', arrowsize=20, node_shape='s')
+plt.imshow(img)
+plt.axis('off')
 plt.title('Circuit Plot')
 plt.show()

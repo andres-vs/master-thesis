@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BERT Architecture Visualization (Vertical with Encoder Details)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    svg {
+      width: 100%;
+      height: 1400px; /* Increased height to account for composite encoder layers */
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+    }
+    /* Generic Box Styles */
+    .box {
+      stroke: #333;
+      stroke-width: 2;
+    }
+    .text {
+      font-size: 12px;
+      fill: #fff;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+    /* Colors for different components */
+    .input-box { fill: #4CAF50; }
+    .embedding-box { fill: #2196F3; }
+    .aggregator-box { fill: #9C27B0; }
+    .mlp-box { fill: #FF9800; }
+    .attn-head { fill: #607D8B; }
+    .output-box { fill: #795548; }
+    /* Arrow style */
+    .arrow {
+      stroke: #333;
+      stroke-width: 1;
+      marker-end: url(#arrowhead);
+    }
+  </style>
+</head>
+<body>
+
+<svg id="bert-diagram"></svg>
+
+<script>
+// Paths to the attention pattern heatmaps and the circuit descriptions
+const source = {
+  attentionPatternHeatmaps: "C:\Users\andre\Documents\School\Hoger\Masterproef\Results\Attention head experiment\attention_patterns",
+  circuitsDescriptions: "C:\Users\andre\Documents\School\Hoger\Masterproef\Code\master-thesis\ACDC\post_processing"
+}
+
+// Configuration for the overall diagram
+const config = {
+  svgWidth: 800,
+  svgHeight: 1400,
+  boxWidth: 100,      // For Input, Embedding, and Output boxes
+  boxHeight: 30,      // For Input, Embedding, and Output boxes
+  layerGap: 50,      // Gap between main layers (Input->Embedding, Embedding->Encoder Composite, etc.)
+  startX: 700,        // X coordinate to center the main boxes horizontally
+  startY: 25,
+  numEncoderLayers: 12 // Change this to 12 (or 24) for full BERT; using 3 here for clarity
+};
+
+// Configuration for each encoder composite (internal structure)
+config.encoderComposite = {
+  numAttentionHeads: 12,   // e.g., BERT-base has 12 heads, but using 4 here for clarity
+  attnHeadWidth: 30,
+  attnHeadHeight: 15,
+  gapBetweenHeads: 10,
+  aggregatorWidth: 15,
+  aggregatorHeight: 15,
+  gapBetweenAttnAndAggr: 20,
+  mlpHeight: 20,
+  gapBetweenAggrAndMLP: 30
+};
+
+// Calculate total composite width and height for an encoder layer
+const compositeWidth = 
+  config.encoderComposite.numAttentionHeads * config.encoderComposite.attnHeadWidth +
+  (config.encoderComposite.numAttentionHeads - 1) * config.encoderComposite.gapBetweenHeads;
+const compositeHeight = 
+  config.encoderComposite.attnHeadHeight +
+  config.encoderComposite.gapBetweenAttnAndAggr +
+  config.encoderComposite.aggregatorHeight +
+  config.encoderComposite.gapBetweenAggrAndMLP +
+  config.encoderComposite.mlpHeight;
+
+// Initialize SVG
+const svg = document.getElementById('bert-diagram');
+svg.setAttribute('width', config.svgWidth);
+svg.setAttribute('height', config.svgHeight);
+
+// Define arrowhead marker
+const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+marker.setAttribute("id", "arrowhead");
+marker.setAttribute("markerWidth", "10");
+marker.setAttribute("markerHeight", "7");
+marker.setAttribute("refX", "10");
+marker.setAttribute("refY", "3.5");
+marker.setAttribute("orient", "auto");
+const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+polygon.setAttribute("points", "0 0, 10 3.5, 0 7");
+polygon.setAttribute("fill", "#333");
+marker.appendChild(polygon);
+defs.appendChild(marker);
+svg.appendChild(defs);
+
+// Function to draw a simple box with centered text
+function drawBox(x, y, width, height, label, cssClass) {
+  const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("x", x);
+  rect.setAttribute("y", y);
+  rect.setAttribute("width", width);
+  rect.setAttribute("height", height);
+  rect.setAttribute("class", "box " + cssClass);
+  svg.appendChild(rect);
+
+  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", x + width / 2);
+  text.setAttribute("y", y + height / 2);
+  text.setAttribute("class", "text");
+  text.textContent = label;
+  svg.appendChild(text);
+}
+
+// Modified drawArrow function
+function drawArrow(...points) {
+  if (points.length < 4 || points.length % 2 !== 0) {
+    console.error('drawArrow requires an even number of coordinates, at least two points.');
+    return;
+  }
+  
+  let pathData = `M ${points[0]},${points[1]}`;
+  for (let i = 2; i < points.length; i += 2) {
+    pathData += ` L ${points[i]},${points[i+1]}`;
+  }
+  
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", pathData);
+  path.setAttribute("class", "arrow");
+  path.setAttribute("fill", "none"); // Ensure no fill
+  svg.appendChild(path);
+}
+
+/**
+ * Draw a composite encoder layer that includes:
+ * - A horizontal row of attention heads
+ * - An aggregator box below the attention heads
+ * - An MLP box below the aggregator
+ *
+ * @param {number} startX - Top-left x coordinate of the composite.
+ * @param {number} startY - Top-left y coordinate of the composite.
+ * @param {number} encoderIndex - The index (or number) of the encoder layer.
+ * @returns {Object} - Returns the bottom-center point of the composite { x, y }.
+ */
+function drawEncoderComposite(startX, startY, encoderIndex) {
+  // --- Draw Attention Heads ---
+  const numHeads = config.encoderComposite.numAttentionHeads;
+  const attnHeadWidth = config.encoderComposite.attnHeadWidth;
+  const attnHeadHeight = config.encoderComposite.attnHeadHeight;
+  const gapBetweenHeads = config.encoderComposite.gapBetweenHeads;
+  const aggregatorHeight = config.encoderComposite.aggregatorHeight;
+  const aggregatorWidth = config.encoderComposite.aggregatorWidth;
+
+  // Calculate the total width of the attention heads group
+  const groupWidth = numHeads * attnHeadWidth + (numHeads - 1) * gapBetweenHeads;
+  // To horizontally center the group within the composite, adjust startX offset.
+  const groupStartX = startX + attnHeadWidth;// + (compositeWidth - groupWidth) / 2;
+
+  // Draw each attention head box
+  for (let i = 0; i < numHeads; i++) {
+    const headX = groupStartX + i * (attnHeadWidth + gapBetweenHeads);
+    const headY = startY;
+    drawBox(headX, headY, attnHeadWidth, attnHeadHeight, `a${encoderIndex}.${i}`, "attn-head");
+  }
+
+  // --- Draw Aggregator Box ---
+  const aggregatorX = startX - (aggregatorWidth / 2);
+  const aggregatorY = startY + attnHeadHeight + config.encoderComposite.gapBetweenAttnAndAggr;
+  // Let aggregator span the entire composite width.
+  drawBox(aggregatorX, aggregatorY, aggregatorWidth, aggregatorHeight, "+", "aggregator-box");
+
+  // --- Draw Arrows from Attention Heads to Aggregator ---
+  for (let i = 0; i < numHeads; i++) {
+    const headX = groupStartX + i * (attnHeadWidth + gapBetweenHeads);
+    const headY = startY;
+    drawArrow(headX + attnHeadWidth / 2, headY + attnHeadHeight, headX + attnHeadWidth / 2, aggregatorY + (aggregatorHeight/2), aggregatorX + aggregatorWidth, aggregatorY + (aggregatorHeight/2));
+  }
+
+  // If this is not the first encoder layer, draw arrows from the previous layer
+  if (encoderIndex > 0) {
+    // --- Draw Arrow from Second Aggregator of Previous Layer to First Aggregator of This Layer ---
+    const prevSecondAggregatorY = startY - config.layerGap;
+    drawArrow(
+      startX, prevSecondAggregatorY,
+      startX, aggregatorY
+    );
+    // --- Draw Arrows from Second Aggregator of Previous Layer to Attention Heads of This Layer ---
+    for (let i = 0; i < numHeads; i++) {
+      const headX = groupStartX + i * (attnHeadWidth + gapBetweenHeads);
+      drawArrow(
+        startX, prevSecondAggregatorY,
+        startX, startY - attnHeadHeight,
+        headX + attnHeadWidth / 2, startY - attnHeadHeight,
+        headX + attnHeadWidth / 2, startY
+      );
+    }
+  }
+  else {
+    // Save the position of the first encoder layer for drawing arrows from the embedding layer
+    positions.firstAggregator = {
+      x: startX - (aggregatorWidth / 2),
+      y: aggregatorY
+    };
+  }
+
+  // --- Draw MLP Box ---
+  const mlpY = aggregatorY + aggregatorHeight + config.encoderComposite.gapBetweenAggrAndMLP;
+  const mlpX = startX + attnHeadWidth;
+  drawBox(mlpX, mlpY, groupWidth, config.encoderComposite.mlpHeight, "MLP", "mlp-box");
+
+  // --- Draw Arrow from Aggregator to MLP ---
+  drawArrow(
+    aggregatorX + aggregatorWidth/2, aggregatorY + aggregatorHeight,
+    aggregatorX + aggregatorWidth/2, mlpY - (mlpY - (aggregatorY + aggregatorHeight))/2,
+    mlpX + groupWidth/2, mlpY - (mlpY - (aggregatorY + aggregatorHeight)) /2,
+    mlpX + groupWidth/2, mlpY
+  );
+
+  // --- Draw Second Aggregator Box ---
+  const secondAggregatorY = mlpY + config.encoderComposite.gapBetweenAggrAndMLP;
+  drawBox(aggregatorX, secondAggregatorY, aggregatorWidth, aggregatorHeight, "+", "aggregator-box");
+
+  // --- Draw Arrow from First Aggregator to Second Aggregator ---
+  drawArrow(
+    aggregatorX + aggregatorWidth / 2, aggregatorY + aggregatorHeight,
+    aggregatorX + aggregatorWidth / 2, secondAggregatorY
+  );
+
+  // --- Draw Arrow from MLP to Second Aggregator ---
+  drawArrow(
+    mlpX + groupWidth / 2, mlpY + config.encoderComposite.mlpHeight,
+    mlpX + groupWidth / 2, secondAggregatorY + aggregatorHeight / 2,
+    aggregatorX + aggregatorWidth, secondAggregatorY + aggregatorHeight / 2
+  );
+  
+  // --- Optionally Label the Composite Encoder Layer ---
+  // Draw a label on top of the composite to indicate the encoder layer number.
+  const labelY = startY - 15; // Above the composite
+  // const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  // label.setAttribute("x", startX + compositeWidth / 2);
+  // label.setAttribute("y", labelY);
+  // label.setAttribute("class", "text");
+  // label.style.fill = "#000";
+  // label.textContent = `Encoder ${encoderIndex}`;
+  // svg.appendChild(label);
+
+  // Return the bottom-left point of the composite structure
+  return {
+    x: startX,
+    y: secondAggregatorY + aggregatorHeight
+  };
+}
+
+// Array to keep track of layer positions (for arrow connections)
+const positions = {};
+
+// --- Draw Input Layer ---
+// const inputX = config.startX;
+// const inputY = config.startY;
+// drawBox(inputX, inputY, config.boxWidth, config.boxHeight, "Input Tokens", "input-box");
+// Save the bottom-center point of the Input Layer for drawing arrows
+// positions.input = {
+//   x: inputX + config.boxWidth / 2,
+//   y: inputY + config.boxHeight
+// };
+
+// --- Draw Embedding Layer ---
+const embedX = config.startX;
+const embedY = config.startY;
+drawBox(embedX, embedY, config.boxWidth, config.boxHeight, "Embedding Layer", "embedding-box");
+positions.embedding = {
+  x: embedX + config.boxWidth / 2,
+  y: embedY + config.boxHeight
+};
+// Draw arrow from Input to Embedding
+// drawArrow(positions.input.x, positions.input.y, positions.embedding.x, embedY);
+
+// --- Draw Encoder Layers (Composite) ---
+let previousPos = positions.embedding;  // Starting point for first encoder composite
+// We want the composite to be centered relative to the main diagram.
+// const compositeX = embedX + (config.boxWidth - compositeWidth) / 2; // Adjust to center composite relative to the input box
+
+for (let i = 0; i < config.numEncoderLayers; i++) {
+  // The top y position for the composite encoder layer:
+  const compositeY = previousPos.y + config.layerGap;
+  // Draw the composite encoder layer
+  const compositeBottomCenter = drawEncoderComposite(previousPos.x, compositeY, i);
+  
+  // Draw arrow from previous layer (or encoder) bottom-center to the top center of the composite encoder layer
+  // drawArrow(previousPos.x, previousPos.y, compositeX + compositeWidth / 2, compositeY);
+  
+  // Update previous position for next connection
+  previousPos = compositeBottomCenter;
+}
+
+// Draw arrow from Embedding Layer to First Aggregator of the First Encoder Layer
+drawArrow(
+  positions.embedding.x, positions.embedding.y,
+  positions.firstAggregator.x + config.encoderComposite.aggregatorWidth/2, positions.firstAggregator.y
+);
+
+// Draw arrows from Embedding Layer to Attention Heads of the First Encoder Layer
+const firstEncoderStartY = positions.embedding.y + config.layerGap;
+const numHeads = config.encoderComposite.numAttentionHeads;
+const attnHeadHeight= config.encoderComposite.attnHeadHeight;
+const attnHeadWidth = config.encoderComposite.attnHeadWidth;
+const gapBetweenHeads = config.encoderComposite.gapBetweenHeads;
+const groupStartX = config.startX + attnHeadWidth;
+const aggregatorWidth = config.encoderComposite.aggregatorWidth;
+
+for (let i = 0; i < numHeads; i++) {
+  const headX = groupStartX + i * (attnHeadWidth + gapBetweenHeads);
+  drawArrow(
+    positions.embedding.x, positions.embedding.y,
+    positions.embedding.x, firstEncoderStartY - attnHeadHeight,
+    headX + attnHeadWidth + attnHeadWidth / 2 + aggregatorWidth, firstEncoderStartY - attnHeadHeight,
+    headX + attnHeadWidth + attnHeadWidth / 2 + aggregatorWidth, firstEncoderStartY
+  );
+}
+
+// --- Draw Output Layer ---
+const outputY = previousPos.y + config.layerGap;
+drawBox(embedX, outputY, config.boxWidth, config.boxHeight, "Output Layer", "output-box");
+positions.output = {
+  x: embedX + config.boxWidth / 2,
+  y: outputY
+};
+// Draw arrow from last encoder composite to Output Layer
+drawArrow(previousPos.x, previousPos.y, positions.output.x, outputY);
+
+</script>
+
+</body>
+</html>
