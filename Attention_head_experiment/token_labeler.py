@@ -23,7 +23,7 @@ def tokenize_sentence(sentence):
     to replicate BERT-like tokenization. For now, we do a naive split.
     """
     # If you want to split out commas separately, you could do something like:
-    # sentence = sentence.replace(',', ' ,')
+    sentence = sentence.replace(',', ' ,')
     # Then split on whitespace
     tokens = sentence.split()
     return tokens
@@ -240,16 +240,36 @@ def label_context(doc_id, text):
     """
     sentences = split_into_sentences(text)
     all_rows = []
+    
+    # Track total token index across context (and query, if extended similarly)
+    total_idx = 0
+
+    # Insert [CLS] token at the beginning of the context
+    all_rows.append({
+        'doc_id': doc_id,
+        'q_id': 'context',
+        'sent_idx': -1,  # or any sentinel value
+        'token_idx': 0,
+        'total_idx': total_idx,
+        'token': '[CLS]',
+                'part': 'theory',
+        'fact_rule': None,
+        'premise_consequence': None,
+        'semantic_label': "CLS"
+    })
+    total_idx += 1
+
     for s_idx, sent in enumerate(sentences):
         # Label the sentence
         token_labels = label_sentence(sent)
         for t_idx, (token, fact_rule, premise_consequence, semantic_label) in enumerate(token_labels):
-            # Build row
+            # Build row with total token index
             row = {
                 'doc_id': doc_id,
                 'q_id': 'context',
                 'sent_idx': s_idx,
                 'token_idx': t_idx,
+                'total_idx': total_idx,
                 'token': token,
                 'part': 'theory',
                 'fact_rule': fact_rule,
@@ -257,23 +277,26 @@ def label_context(doc_id, text):
                 'semantic_label': semantic_label
             }
             all_rows.append(row)
-        # If you want to preserve the DOT as a token for each sentence:
-        dot_row = {
-            'doc_id': doc_id,
-            'q_id': 'context',
-            'sent_idx': s_idx,
-            'token_idx': len(token_labels),
-            'token': '.',
-            'part': 'theory',
-            'fact_rule': token_labels[-1][1] if token_labels else 'fact',
-            'premise_consequence': token_labels[-1][2] if token_labels else '-',
-            'semantic_label': 'DOT'
-        }
-        all_rows.append(dot_row)
+            total_idx += 1
 
-    return all_rows
+    # Insert [SEP] token at the end of the context
+    all_rows.append({
+        'doc_id': doc_id,
+        'q_id': 'context',
+        'sent_idx': -1,  # or any sentinel value
+        'token_idx': None,
+        'total_idx': total_idx,
+        'token': '[SEP]',
+        'part': 'theory',
+        'fact_rule': None,
+        'premise_consequence': None,
+        'semantic_label': "SEP"
+    })
+    total_idx += 1
 
-def label_query(doc_id, q_id, text):
+    return all_rows, total_idx
+
+def label_query(doc_id, q_id, text, total_idx):
     """
     Labels the 'query' text in the same manner.
     A query might be a single sentence like "Harry is not round." or
@@ -289,6 +312,7 @@ def label_query(doc_id, q_id, text):
                 'q_id': q_id,
                 'sent_idx': s_idx,
                 'token_idx': t_idx,
+                'total_idx': total_idx,
                 'token': token,
                 'part': 'query',
                 'fact_rule': fact_rule,
@@ -296,12 +320,14 @@ def label_query(doc_id, q_id, text):
                 'semantic_label': semantic_label
             }
             all_rows.append(row)
+            total_idx += 1
         # Add final DOT if desired
         dot_row = {
             'doc_id': doc_id,
             'q_id': q_id,
             'sent_idx': s_idx,
             'token_idx': len(token_labels),
+            'total_idx': total_idx,
             'token': '.',
             'part': 'query',
             'fact_rule': token_labels[-1][1] if token_labels else 'fact',
@@ -309,6 +335,22 @@ def label_query(doc_id, q_id, text):
             'semantic_label': 'DOT'
         }
         all_rows.append(dot_row)
+        total_idx += 1
+
+        # Insert [SEP] token at the end of the query
+        all_rows.append({
+            'doc_id': doc_id,
+            'q_id': q_id,
+            'sent_idx': -1,  # or any sentinel value
+            'token_idx': None,
+            'total_idx': total_idx,
+            'token': '[SEP]',
+            'part': 'query',
+            'fact_rule': None,
+            'premise_consequence': None,
+            'semantic_label': "SEP"
+        })
+        total_idx += 1
     return all_rows
 
 def main(input_file, output_file=None):
@@ -335,7 +377,7 @@ def main(input_file, output_file=None):
 
         # Write header
         header = [
-            'doc_id', 'q_id', 'sent_idx', 'token_idx',
+            'doc_id', 'q_id', 'sent_idx', 'token_idx', 'total_idx',
             'token', 'part', 'fact_rule',
             'premise_consequence', 'semantic_label'
         ]
@@ -352,16 +394,16 @@ def main(input_file, output_file=None):
             questions = data.get('questions', [])
 
             # Label context
-            context_rows = label_context(doc_id, context_text)
+            context_rows, total_idx = label_context(doc_id, context_text)
             for r in context_rows:
                 row_str = '\t'.join(str(r[col]) for col in header)
                 f_out.write(row_str + '\n')
 
             # Label each question
             for q in questions:
-                q_id = q.get('id', '')
+                q_id = int(q.get('id', '').split("-")[-1])-1
                 q_text = q.get('text', '')
-                q_rows = label_query(doc_id, q_id, q_text)
+                q_rows = label_query(doc_id, q_id, q_text, total_idx)
                 for r in q_rows:
                     row_str = '\t'.join(str(r[col]) for col in header)
                     f_out.write(row_str + '\n')
