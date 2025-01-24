@@ -1,3 +1,4 @@
+import json
 import torch
 import csv
 import sys
@@ -157,8 +158,9 @@ def plot_heatmap(matrix, labels, save_path, title="Category Attention"):
         plt.savefig(save_path + f"/{title}.png")
     else:
         plt.show()
+    plt.close()
 
-def main(tsv_file, pt_file, save_path=None, avg_examples=False, example_indices=[0], layer_idx=0, head_idx=0, doc_id_filter=None):
+def main(tsv_file, pt_file, save_path=None, avg_examples=False, example_indices=[0], layer_idx=0, head_idx=0, doc_id_filter=None, circuit_file=None):
     """
     1) Load & group tokens from test.tsv based on total_idx for specified example_indices.
     2) Build examples by combining (doc_id, 'context') + (doc_id, query_id).
@@ -179,17 +181,28 @@ def main(tsv_file, pt_file, save_path=None, avg_examples=False, example_indices=
             continue
         selected_examples.append(all_examples[idx])
 
-    aggregated_matrices = []
+    # 4) Load attention
+    patterns = torch.load(pt_file)  # a list of dicts
 
-    for example_idx, (doc_qid, combined_tokens) in enumerate(tqdm(selected_examples, total=len(selected_examples))):  # tqdm is optional
-        doc_id, q_id = doc_qid
+    if circuit_file:
+        with open(circuit_file, 'r') as f:
+            circuit_data = json.load(f)
+            attention_heads = [node for node in circuit_data['nodes'] if node.startswith('a')]
+            for head in tqdm(attention_heads, total=len(attention_heads), desc="Processing attention heads"):
+                layer_idx, head_idx = map(int, head[1:].split('h'))
+                process_attention_head(layer_idx, head_idx, selected_examples, patterns, avg_examples, save_path)
+    else:
+        process_attention_head(layer_idx, head_idx, selected_examples, patterns, avg_examples, save_path)
+
+def process_attention_head(layer_idx, head_idx, selected_examples, patterns, avg_examples, save_path):
+    aggregated_matrices = []
+    for example_idx, (doc_qid, combined_tokens) in enumerate(selected_examples):
         semantic_labels = [x[1] for x in combined_tokens]  # extract just the label
         seq_len = len(combined_tokens)
 
         # print(f"Using example_idx={example_idx} with doc_id={doc_id}, q_id={q_id}, seq_len={seq_len}")
 
-        # 4) Load attention
-        patterns = torch.load(pt_file)  # a list of dicts
+        
         if example_idx >= len(patterns):
             print(f"Error: The attention_patterns.pt does not have index {example_idx}.")
             return
@@ -210,14 +223,14 @@ def main(tsv_file, pt_file, save_path=None, avg_examples=False, example_indices=
         # 6) Aggregate by category
         agg_matrix, labels = aggregate_attention_by_category(attn_matrix, semantic_labels)
         aggregated_matrices.append(agg_matrix)
-
+    
     if avg_examples and aggregated_matrices:
         avg_matrix = np.mean(aggregated_matrices, axis=0)
         examples = example_indices if len(example_indices) < 5 else f"{example_indices[0]}-{example_indices[-1]}"
-        plot_heatmap(avg_matrix, labels, save_path, title=f"avg_of_examples{examples}--head{layer_idx}.{head_idx})")
+        plot_heatmap(avg_matrix, ALL_POSSIBLE_LABELS, save_path, title=f"avg_of_examples{examples}--head{layer_idx}.{head_idx}")
     else:
         for idx, matrix in enumerate(aggregated_matrices):
-            plot_heatmap(matrix, labels, save_path, title=f"example{examples}--head{layer_idx}.{head_idx})")
+            plot_heatmap(matrix, ALL_POSSIBLE_LABELS, save_path, title=f"example{examples[idx]}--head{layer_idx}.{head_idx}")
 
 if __name__ == "__main__":
 
@@ -229,8 +242,8 @@ if __name__ == "__main__":
     parser.add_argument("--example_indices", type=str, default="0", help="Comma-separated list or range of example indices (e.g., '0,1,2' or '0-2')")
     parser.add_argument("--layer_idx", type=int, default=0, help="Layer index to visualize")
     parser.add_argument("--head_idx", type=int, default=0, help="Head index to visualize")
-    # parser.add_argument("--heads", type=str, help="Comma-separated list of head indices (e.g., '0,1,2')")
     parser.add_argument("--doc_id_filter", type=str, default=None, help="Optional doc_id filter")
+    parser.add_argument("--circuit_file", type=str, help="Path to the circuit description JSON file.")
 
     args = parser.parse_args()
 
@@ -241,4 +254,4 @@ if __name__ == "__main__":
     else:
         example_indices = list(map(int, args.example_indices.split(',')))
 
-    main(args.tsv_file, args.pt_file, args.save_path, args.avg_examples, example_indices, args.layer_idx, args.head_idx, args.doc_id_filter)
+    main(args.tsv_file, args.pt_file, args.save_path, args.avg_examples, example_indices, args.layer_idx, args.head_idx, args.doc_id_filter, args.circuit_file)

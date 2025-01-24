@@ -47,6 +47,8 @@
   <svg id="bert-diagram"></svg>
 
 <script>
+// import fs from 'fs';
+
 // Paths to the attention pattern heatmaps and the circuit descriptions
 const source = {
   attentionPatternHeatmaps: "C:\Users\andre\Documents\School\Hoger\Masterproef\Results\Attention head experiment\attention_patterns",
@@ -109,12 +111,10 @@ polygon.setAttribute("fill", "#333");
 marker.appendChild(polygon);
 defs.appendChild(marker);
 svg.appendChild(defs);
-console.log("test")
+
+// console.log("test")
 async function fetchFileList() {
-  console.log('Fetching file list...');
-  const response = await fetch('/circuit_descriptions'); // Replace with your endpoint
-  console.log("Done fetching file list");
-  console.log(response);
+  const response = await fetch('/file-list');
   const files = await response.json();
   const fileSelect = document.getElementById('file-select');
   fileSelect.innerHTML = '';
@@ -126,9 +126,15 @@ async function fetchFileList() {
   });
 }
 
+
 async function loadAndDrawFile(fileName) {
-  const response = await fetch(`${source.circuitsDescriptions}/${fileName}`);
+  const response = await fetch(`/circuit_descriptions/${fileName}`); // Update path to relative URL
+  if (!response.ok) {
+    console.error('Failed to load file:', response.statusText);
+    return;
+  }
   const data = await response.json();
+  console.log(data);
   redrawDiagram(data.nodes);
 }
 
