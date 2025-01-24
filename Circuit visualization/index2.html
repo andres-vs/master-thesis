@@ -41,8 +41,10 @@
   </style>
 </head>
 <body>
+  <label for="file-select">Select JSON File:</label>
+  <select id="file-select"></select>
 
-<svg id="bert-diagram"></svg>
+  <svg id="bert-diagram"></svg>
 
 <script>
 // Paths to the attention pattern heatmaps and the circuit descriptions
@@ -107,6 +109,28 @@ polygon.setAttribute("fill", "#333");
 marker.appendChild(polygon);
 defs.appendChild(marker);
 svg.appendChild(defs);
+console.log("test")
+async function fetchFileList() {
+  console.log('Fetching file list...');
+  const response = await fetch('/circuit_descriptions'); // Replace with your endpoint
+  console.log("Done fetching file list");
+  console.log(response);
+  const files = await response.json();
+  const fileSelect = document.getElementById('file-select');
+  fileSelect.innerHTML = '';
+  files.forEach(file => {
+    const option = document.createElement('option');
+    option.value = file;
+    option.textContent = file;
+    fileSelect.appendChild(option);
+  });
+}
+
+async function loadAndDrawFile(fileName) {
+  const response = await fetch(`${source.circuitsDescriptions}/${fileName}`);
+  const data = await response.json();
+  redrawDiagram(data.nodes);
+}
 
 // Function to draw a simple box with centered text
 function drawBox(x, y, width, height, label, cssClass) {
@@ -264,6 +288,13 @@ function drawEncoderComposite(startX, startY, encoderIndex) {
     y: secondAggregatorY + aggregatorHeight
   };
 }
+
+// Call the function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', fetchFileList);
+
+document.getElementById('file-select').addEventListener('change', (event) => {
+  loadAndDrawFile(event.target.value);
+});
 
 // Array to keep track of layer positions (for arrow connections)
 const positions = {};
