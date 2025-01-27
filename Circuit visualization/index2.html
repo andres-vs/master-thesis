@@ -295,6 +295,41 @@ function drawEncoderComposite(startX, startY, encoderIndex) {
   };
 }
 
+// Function to redraw the diagram based on the circuit description
+function redrawDiagram(nodes){
+  // Initialize an array to store nodes layer by layer
+  const layers = [];
+
+  // Iterate through the nodes and group them by layer
+  nodes.forEach(node => {
+    const parsedNode = parseNodeIdentifier(node);
+    if (parsedNode) {
+      const layerIndex = parsedNode.layer;
+      if (!layers[layerIndex]) {
+        layers[layerIndex] = [];
+      }
+      layers[layerIndex].push(node);
+    }
+  });
+
+  // Now you can access nodes by layer using layers[layerIndex]
+  console.log(layers);
+}
+// Function to parse node identifiers and extract layer and head information
+function parseNodeIdentifier(identifier) {
+  const attnHeadMatch = identifier.match(/^a(\d+)h(\d+)$/);
+  if (attnHeadMatch) {
+    return { type: 'attention', layer: parseInt(attnHeadMatch[1]), head: parseInt(attnHeadMatch[2]) };
+  }
+
+  const mlpMatch = identifier.match(/^m(\d+)$/);
+  if (mlpMatch) {
+    return { type: 'mlp', layer: parseInt(mlpMatch[1]) };
+  }
+
+  return null; // Unknown node type
+}
+
 // Call the function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', fetchFileList);
 
