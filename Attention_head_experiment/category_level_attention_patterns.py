@@ -132,6 +132,11 @@ def aggregate_attention_by_category(attn_matrix, token_sem_labels):
     agg_matrix = np.zeros((n_labels, n_labels))
     seq_len = len(token_sem_labels)
 
+    # plt.figure(figsize=(8,6))
+    # ax = sns.heatmap(attn_matrix,
+    #                  cmap='Blues',
+    #                  annot=False)  # Turn off numeric annotations
+    # plt.show()
     for i in range(seq_len):
         label_i = token_sem_labels[i]
         row_i = label2idx[label_i]
@@ -181,6 +186,7 @@ def main(tsv_file, pt_file, save_path=None, avg_examples=False, example_indices=
             continue
         selected_examples.append(all_examples[idx])
 
+
     # 4) Load attention
     patterns = torch.load(pt_file)  # a list of dicts
 
@@ -190,13 +196,13 @@ def main(tsv_file, pt_file, save_path=None, avg_examples=False, example_indices=
             attention_heads = [node for node in circuit_data['nodes'] if node.startswith('a')]
             for head in tqdm(attention_heads, total=len(attention_heads), desc="Processing attention heads"):
                 layer_idx, head_idx = map(int, head[1:].split('h'))
-                process_attention_head(layer_idx, head_idx, selected_examples, patterns, avg_examples, save_path)
+                process_attention_head(layer_idx, head_idx, example_indices, selected_examples, patterns, avg_examples, save_path)
     else:
-        process_attention_head(layer_idx, head_idx, selected_examples, patterns, avg_examples, save_path)
+        process_attention_head(layer_idx, head_idx, example_indices, selected_examples, patterns, avg_examples, save_path)
 
-def process_attention_head(layer_idx, head_idx, selected_examples, patterns, avg_examples, save_path):
+def process_attention_head(layer_idx, head_idx, example_indices, selected_examples, patterns, avg_examples, save_path):
     aggregated_matrices = []
-    for example_idx, (doc_qid, combined_tokens) in enumerate(selected_examples):
+    for example_idx, (doc_qid, combined_tokens) in zip(example_indices, selected_examples):
         semantic_labels = [x[1] for x in combined_tokens]  # extract just the label
         seq_len = len(combined_tokens)
 

@@ -278,6 +278,21 @@ def label_context(doc_id, text):
             }
             all_rows.append(row)
             total_idx += 1
+        # Add final DOT for every sentence if desired
+        dot_row = {
+            'doc_id': doc_id,
+            'q_id': 'context',
+            'sent_idx': s_idx,
+            'token_idx': len(token_labels),
+            'total_idx': total_idx,
+            'token': '.',
+            'part': 'theory',
+            'fact_rule': token_labels[-1][1] if token_labels else 'fact',
+            'premise_consequence': None,
+            'semantic_label': 'DOT'
+        }
+        all_rows.append(dot_row)
+        total_idx += 1
 
     # Insert [SEP] token at the end of the context
     all_rows.append({
@@ -331,7 +346,7 @@ def label_query(doc_id, q_id, text, total_idx):
             'token': '.',
             'part': 'query',
             'fact_rule': token_labels[-1][1] if token_labels else 'fact',
-            'premise_consequence': token_labels[-1][2] if token_labels else '-',
+            'premise_consequence': None,
             'semantic_label': 'DOT'
         }
         all_rows.append(dot_row)
