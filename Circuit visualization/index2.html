@@ -77,6 +77,7 @@ config.encoderComposite = {
   aggregatorHeight: 15,
   gapBetweenAttnAndAggr: 20,
   mlpHeight: 20,
+  mlpWidth: 50,
   gapBetweenAggrAndMLP: 30
 };
 
@@ -195,7 +196,7 @@ function drawArrow(...points) {
  * @param {number} encoderIndex - The index (or number) of the encoder layer.
  * @returns {Object} - Returns the bottom-center point of the composite { x, y }.
  */
-function drawEncoderComposite(startX, startY, encoderIndex) {
+function drawEncoderComposite(startX, startY, encoderIndex, positions) {
   // --- Draw Attention Heads ---
   const numHeads = config.encoderComposite.numAttentionHeads;
   const attnHeadWidth = config.encoderComposite.attnHeadWidth;
@@ -203,6 +204,8 @@ function drawEncoderComposite(startX, startY, encoderIndex) {
   const gapBetweenHeads = config.encoderComposite.gapBetweenHeads;
   const aggregatorHeight = config.encoderComposite.aggregatorHeight;
   const aggregatorWidth = config.encoderComposite.aggregatorWidth;
+  const mlpW = config.encoderComposite.mlpWidth;
+  const mlpH = config.encoderComposite.mlpHeight;
 
   // Calculate the total width of the attention heads group
   const groupWidth = numHeads * attnHeadWidth + (numHeads - 1) * gapBetweenHeads;
@@ -259,14 +262,14 @@ function drawEncoderComposite(startX, startY, encoderIndex) {
   // --- Draw MLP Box ---
   const mlpY = aggregatorY + aggregatorHeight + config.encoderComposite.gapBetweenAggrAndMLP;
   const mlpX = startX + attnHeadWidth;
-  drawBox(mlpX, mlpY, groupWidth, config.encoderComposite.mlpHeight, "MLP", "mlp-box");
+  drawBox(mlpX, mlpY, mlpW, mlpH, `MLP ${encoderIndex}`, "mlp-box");
 
   // --- Draw Arrow from Aggregator to MLP ---
   drawArrow(
     aggregatorX + aggregatorWidth/2, aggregatorY + aggregatorHeight,
     aggregatorX + aggregatorWidth/2, mlpY - (mlpY - (aggregatorY + aggregatorHeight))/2,
-    mlpX + groupWidth/2, mlpY - (mlpY - (aggregatorY + aggregatorHeight)) /2,
-    mlpX + groupWidth/2, mlpY
+    mlpX + mlpW/2, mlpY - (mlpY - (aggregatorY + aggregatorHeight)) /2,
+    mlpX + mlpW/2, mlpY
   );
 
   // --- Draw Second Aggregator Box ---
@@ -281,8 +284,8 @@ function drawEncoderComposite(startX, startY, encoderIndex) {
 
   // --- Draw Arrow from MLP to Second Aggregator ---
   drawArrow(
-    mlpX + groupWidth / 2, mlpY + config.encoderComposite.mlpHeight,
-    mlpX + groupWidth / 2, secondAggregatorY + aggregatorHeight / 2,
+    mlpX + mlpW / 2, mlpY + mlpW,
+    mlpX + mlpW / 2, secondAggregatorY + aggregatorHeight / 2,
     aggregatorX + aggregatorWidth, secondAggregatorY + aggregatorHeight / 2
   );
   
@@ -305,7 +308,7 @@ function drawEncoderComposite(startX, startY, encoderIndex) {
 }
 
 // Function to redraw the diagram based on the circuit description
-function redrawDiagram(nodes){
+function redrawDiagram(nodes) {
   // Initialize an array to store nodes layer by layer
   const layers = [];
 
@@ -317,13 +320,185 @@ function redrawDiagram(nodes){
       if (!layers[layerIndex]) {
         layers[layerIndex] = [];
       }
-      layers[layerIndex].push(node);
+      layers[layerIndex].push(parsedNode);
     }
   });
 
   // Now you can access nodes by layer using layers[layerIndex]
   console.log(layers);
+
+  // Clear the SVG before redrawing
+  svg.innerHTML = '';
+
+  // Re-define arrowhead marker
+  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+  marker.setAttribute("id", "arrowhead");
+  marker.setAttribute("markerWidth", "10");
+  marker.setAttribute("markerHeight", "7");
+  marker.setAttribute("refX", "10");
+  marker.setAttribute("refY", "3.5");
+  marker.setAttribute("orient", "auto");
+  const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+  polygon.setAttribute("points", "0 0, 10 3.5, 0 7");
+  polygon.setAttribute("fill", "#333");
+  marker.appendChild(polygon);
+  defs.appendChild(marker);
+  svg.appendChild(defs);
+
+  // Draw embedding layer (always present)
+  const embedX = config.startX;
+  const embedY = config.startY;
+  drawBox(embedX, embedY, config.boxWidth, config.boxHeight, "Embedding Layer", "embedding-box");
+  const positions = { embedding: { x: embedX + config.boxWidth / 2, y: embedY + config.boxHeight } };
+
+  let previousPos = positions.embedding;
+  let firstEncoderAggregatorPos = null;
+
+  // Iterate over each encoder layer as defined by layers variable
+  layers.forEach((layerNodes, layerIndex) => {
+    const compositeY = previousPos.y + config.layerGap;
+    const startX = previousPos.x;
+
+    // Composite config variables for readability
+    const attnW = config.encoderComposite.attnHeadWidth;
+    const attnH = config.encoderComposite.attnHeadHeight;
+    const gapHead = config.encoderComposite.gapBetweenHeads;
+    const aggrW = config.encoderComposite.aggregatorWidth;
+    const aggrH = config.encoderComposite.aggregatorHeight;
+    const gapAttnAggr = config.encoderComposite.gapBetweenAttnAndAggr;
+    const mlpH = config.encoderComposite.mlpHeight;
+    const mlpW = config.encoderComposite.mlpWidth;
+    const gapAggrMLP = config.encoderComposite.gapBetweenAggrAndMLP;
+
+    // Filter attention heads; sort them by head index to preserve order.
+    const attnNodes = layerNodes.filter(n => n.type === "attention")
+                                .sort((a, b) => a.head - b.head);
+    // Compute the number of attention heads to draw.
+    const numHeads = attnNodes.length;
+    const groupStartX = startX + attnW;
+    // Draw each attention head if present.
+    attnNodes.forEach((node, idx) => {
+      const headX = groupStartX + idx * (attnW + gapHead);
+      const headY = compositeY;
+      drawBox(headX, headY, attnW, attnH, `a${layerIndex}.${node.head}`, "attn-head");
+    });
+    // Use drawn count; if none drawn, fall back to a default (but no heads will be rendered)
+    const groupWidth = (numHeads > 0)
+      ? numHeads * attnW + (numHeads - 1) * gapHead
+      : config.encoderComposite.numAttentionHeads * attnW +
+        (config.encoderComposite.numAttentionHeads - 1) * gapHead;
+
+    // Draw arrows from Embedding Layer to Attention Heads of the First Encoder Layer
+    if (layerIndex === 0) {
+      const firstEncoderStartY = compositeY;
+      const attnHeadHeight = config.encoderComposite.attnHeadHeight;
+      const attnHeadWidth = config.encoderComposite.attnHeadWidth;
+      const gapBetweenHeads = config.encoderComposite.gapBetweenHeads;
+      const groupStartX = startX + attnHeadWidth;
+
+      attnNodes.forEach((node, idx) => {
+      const headX = groupStartX + idx * (attnHeadWidth + gapBetweenHeads);
+      drawArrow(
+        positions.embedding.x, positions.embedding.y,
+        positions.embedding.x, firstEncoderStartY - attnHeadHeight,
+        headX + attnHeadWidth / 2, firstEncoderStartY - attnHeadHeight,
+        headX + attnHeadWidth / 2, firstEncoderStartY
+      );
+      });
+    }
+
+    // Always draw the first aggregator box.
+    const aggrX = startX - (aggrW / 2);
+    const aggrY = compositeY + attnH + gapAttnAggr;
+    drawBox(aggrX, aggrY, aggrW, aggrH, "+", "aggregator-box");
+    // Save first encoder aggregator position for connection from Embedding.
+    if (layerIndex === 0) {
+      firstEncoderAggregatorPos = { x: aggrX + aggrW / 2, y: aggrY };
+    }
+
+    // Draw arrows from each drawn attention head to the first aggregator.
+    attnNodes.forEach((node, idx) => {
+      const headX = groupStartX + idx * (attnW + gapHead);
+      const headY = compositeY;
+      drawArrow(
+        headX + attnW / 2, headY + attnH,
+        headX + attnW / 2, aggrY + aggrH / 2,
+        aggrX + aggrW, aggrY + aggrH / 2
+      );
+    });
+
+    // If not the first encoder layer, connect the previous layer to this one.
+    if (layerIndex > 0) {
+      drawArrow(previousPos.x, previousPos.y, startX, aggrY);
+      attnNodes.forEach((node, idx) => {
+        const headX = groupStartX + idx * (attnW + gapHead);
+        drawArrow(
+          startX, previousPos.y,
+          startX, compositeY - attnH,
+          headX + attnW / 2, compositeY - attnH,
+          headX + attnW / 2, compositeY
+        );
+      });
+    }
+
+    // If the layer contains an MLP node, draw the MLP box.
+    let mlpDrawn = false;
+    if (layerNodes.some(n => n.type === "mlp")) {
+      const mlpY = aggrY + aggrH + gapAggrMLP;
+      const mlpX = startX + attnW;
+      drawBox(mlpX, mlpY, mlpW, mlpH, `MLP ${layerIndex}`, "mlp-box");
+      // Draw arrow from aggregator to MLP.
+      drawArrow(
+        aggrX + aggrW / 2, aggrY + aggrH,
+        aggrX + aggrW / 2, mlpY - (mlpY - (aggrY + aggrH)) / 2,
+        mlpX + mlpW / 2, mlpY - (mlpY - (aggrY + aggrH)) / 2,
+        mlpX + mlpW / 2, mlpY
+      );
+      mlpDrawn = true;
+    }
+
+    // Always draw the second aggregator.
+    // const secondAggrY = mlpDrawn
+    //   ? (aggrY + aggrH + gapAggrMLP + mlpH + gapAggrMLP)
+    //   : (aggrY + gapAggrMLP);
+    const secondAggrY = aggrY + aggrH + gapAggrMLP + gapAggrMLP;
+    drawBox(aggrX, secondAggrY, aggrW, aggrH, "+", "aggregator-box");
+
+    // Connect first aggregator to second aggregator.
+    drawArrow(
+      aggrX + aggrW / 2, aggrY + aggrH,
+      aggrX + aggrW / 2, secondAggrY
+    );
+
+    // If an MLP was drawn, connect its output to the second aggregator.
+    if (mlpDrawn) {
+      const mlpX = startX + attnW;
+      const mlpY = aggrY + aggrH + gapAggrMLP;
+      const groupCenterX = startX + attnW + groupWidth / 2;
+      drawArrow(
+        mlpX + mlpW / 2, mlpY + mlpH,
+        mlpX + mlpW / 2, secondAggrY + aggrH / 2,
+        aggrX + aggrW, secondAggrY + aggrH / 2
+      );
+    }
+
+    // Set previousPos for next layer (the center-bottom of this composite).
+    previousPos = { x: aggrX + aggrW / 2, y: secondAggrY + aggrH };
+  });
+
+  // Connect Embedding layer to the first aggregator of the first encoder layer.
+  drawArrow(
+    positions.embedding.x, positions.embedding.y,
+    firstEncoderAggregatorPos.x, firstEncoderAggregatorPos.y
+  );
+
+  // Draw the Output layer (always present) after the last encoder composite.
+  const outputY = previousPos.y + config.layerGap;
+  drawBox(config.startX, outputY, config.boxWidth, config.boxHeight, "Output Layer", "output-box");
+  drawArrow(previousPos.x, previousPos.y, config.startX + config.boxWidth / 2, outputY);
 }
+
 // Function to parse node identifiers and extract layer and head information
 function parseNodeIdentifier(identifier) {
   const attnHeadMatch = identifier.match(/^a(\d+)h(\d+)$/);
@@ -339,6 +514,9 @@ function parseNodeIdentifier(identifier) {
   return null; // Unknown node type
 }
 
+// draw the full model when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', drawFullModel);
+
 // Call the function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', fetchFileList);
 
@@ -346,83 +524,85 @@ document.getElementById('file-select').addEventListener('change', (event) => {
   loadAndDrawFile(event.target.value);
 });
 
-// Array to keep track of layer positions (for arrow connections)
-const positions = {};
 
-// --- Draw Input Layer ---
-// const inputX = config.startX;
-// const inputY = config.startY;
-// drawBox(inputX, inputY, config.boxWidth, config.boxHeight, "Input Tokens", "input-box");
-// Save the bottom-center point of the Input Layer for drawing arrows
-// positions.input = {
-//   x: inputX + config.boxWidth / 2,
-//   y: inputY + config.boxHeight
-// };
+function drawFullModel() {
+  // Array to keep track of layer positions (for arrow connections)
+  const positions = {};
 
-// --- Draw Embedding Layer ---
-const embedX = config.startX;
-const embedY = config.startY;
-drawBox(embedX, embedY, config.boxWidth, config.boxHeight, "Embedding Layer", "embedding-box");
-positions.embedding = {
-  x: embedX + config.boxWidth / 2,
-  y: embedY + config.boxHeight
-};
-// Draw arrow from Input to Embedding
-// drawArrow(positions.input.x, positions.input.y, positions.embedding.x, embedY);
+  // --- Draw Input Layer ---
+  // const inputX = config.startX;
+  // const inputY = config.startY;
+  // drawBox(inputX, inputY, config.boxWidth, config.boxHeight, "Input Tokens", "input-box");
+  // Save the bottom-center point of the Input Layer for drawing arrows
+  // positions.input = {
+  //   x: inputX + config.boxWidth / 2,
+  //   y: inputY + config.boxHeight
+  // };
 
-// --- Draw Encoder Layers (Composite) ---
-let previousPos = positions.embedding;  // Starting point for first encoder composite
-// We want the composite to be centered relative to the main diagram.
-// const compositeX = embedX + (config.boxWidth - compositeWidth) / 2; // Adjust to center composite relative to the input box
+  // --- Draw Embedding Layer ---
+  const embedX = config.startX;
+  const embedY = config.startY;
+  drawBox(embedX, embedY, config.boxWidth, config.boxHeight, "Embedding Layer", "embedding-box");
+  positions.embedding = {
+    x: embedX + config.boxWidth / 2,
+    y: embedY + config.boxHeight
+  };
+  // Draw arrow from Input to Embedding
+  // drawArrow(positions.input.x, positions.input.y, positions.embedding.x, embedY);
 
-for (let i = 0; i < config.numEncoderLayers; i++) {
-  // The top y position for the composite encoder layer:
-  const compositeY = previousPos.y + config.layerGap;
-  // Draw the composite encoder layer
-  const compositeBottomCenter = drawEncoderComposite(previousPos.x, compositeY, i);
-  
-  // Draw arrow from previous layer (or encoder) bottom-center to the top center of the composite encoder layer
-  // drawArrow(previousPos.x, previousPos.y, compositeX + compositeWidth / 2, compositeY);
-  
-  // Update previous position for next connection
-  previousPos = compositeBottomCenter;
-}
+  // --- Draw Encoder Layers (Composite) ---
+  let previousPos = positions.embedding;  // Starting point for first encoder composite
+  // We want the composite to be centered relative to the main diagram.
+  // const compositeX = embedX + (config.boxWidth - compositeWidth) / 2; // Adjust to center composite relative to the input box
 
-// Draw arrow from Embedding Layer to First Aggregator of the First Encoder Layer
-drawArrow(
-  positions.embedding.x, positions.embedding.y,
-  positions.firstAggregator.x + config.encoderComposite.aggregatorWidth/2, positions.firstAggregator.y
-);
+  for (let i = 0; i < config.numEncoderLayers; i++) {
+    // The top y position for the composite encoder layer:
+    const compositeY = previousPos.y + config.layerGap;
+    // Draw the composite encoder layer
+    const compositeBottomCenter = drawEncoderComposite(previousPos.x, compositeY, i, positions);
+    
+    // Draw arrow from previous layer (or encoder) bottom-center to the top center of the composite encoder layer
+    // drawArrow(previousPos.x, previousPos.y, compositeX + compositeWidth / 2, compositeY);
+    
+    // Update previous position for next connection
+    previousPos = compositeBottomCenter;
+  }
 
-// Draw arrows from Embedding Layer to Attention Heads of the First Encoder Layer
-const firstEncoderStartY = positions.embedding.y + config.layerGap;
-const numHeads = config.encoderComposite.numAttentionHeads;
-const attnHeadHeight= config.encoderComposite.attnHeadHeight;
-const attnHeadWidth = config.encoderComposite.attnHeadWidth;
-const gapBetweenHeads = config.encoderComposite.gapBetweenHeads;
-const groupStartX = config.startX + attnHeadWidth;
-const aggregatorWidth = config.encoderComposite.aggregatorWidth;
-
-for (let i = 0; i < numHeads; i++) {
-  const headX = groupStartX + i * (attnHeadWidth + gapBetweenHeads);
+  // Draw arrow from Embedding Layer to First Aggregator of the First Encoder Layer
   drawArrow(
     positions.embedding.x, positions.embedding.y,
-    positions.embedding.x, firstEncoderStartY - attnHeadHeight,
-    headX + attnHeadWidth + attnHeadWidth / 2 + aggregatorWidth, firstEncoderStartY - attnHeadHeight,
-    headX + attnHeadWidth + attnHeadWidth / 2 + aggregatorWidth, firstEncoderStartY
+    positions.firstAggregator.x + config.encoderComposite.aggregatorWidth/2, positions.firstAggregator.y
   );
+
+  // Draw arrows from Embedding Layer to Attention Heads of the First Encoder Layer
+  const firstEncoderStartY = positions.embedding.y + config.layerGap;
+  const numHeads = config.encoderComposite.numAttentionHeads;
+  const attnHeadHeight= config.encoderComposite.attnHeadHeight;
+  const attnHeadWidth = config.encoderComposite.attnHeadWidth;
+  const gapBetweenHeads = config.encoderComposite.gapBetweenHeads;
+  const groupStartX = config.startX + attnHeadWidth;
+  const aggregatorWidth = config.encoderComposite.aggregatorWidth;
+
+  for (let i = 0; i < numHeads; i++) {
+    const headX = groupStartX + i * (attnHeadWidth + gapBetweenHeads);
+    drawArrow(
+      positions.embedding.x, positions.embedding.y,
+      positions.embedding.x, firstEncoderStartY - attnHeadHeight,
+      headX + attnHeadWidth + attnHeadWidth / 2 + aggregatorWidth, firstEncoderStartY - attnHeadHeight,
+      headX + attnHeadWidth + attnHeadWidth / 2 + aggregatorWidth, firstEncoderStartY
+    );
+  }
+
+  // --- Draw Output Layer ---
+  const outputY = previousPos.y + config.layerGap;
+  drawBox(embedX, outputY, config.boxWidth, config.boxHeight, "Output Layer", "output-box");
+  positions.output = {
+    x: embedX + config.boxWidth / 2,
+    y: outputY
+  };
+  // Draw arrow from last encoder composite to Output Layer
+  drawArrow(previousPos.x, previousPos.y, positions.output.x, outputY);
 }
-
-// --- Draw Output Layer ---
-const outputY = previousPos.y + config.layerGap;
-drawBox(embedX, outputY, config.boxWidth, config.boxHeight, "Output Layer", "output-box");
-positions.output = {
-  x: embedX + config.boxWidth / 2,
-  y: outputY
-};
-// Draw arrow from last encoder composite to Output Layer
-drawArrow(previousPos.x, previousPos.y, positions.output.x, outputY);
-
 </script>
 
 </body>
