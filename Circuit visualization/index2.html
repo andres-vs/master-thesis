@@ -114,16 +114,25 @@ svg.appendChild(defs);
 
 // console.log("test")
 async function fetchFileList() {
-  const response = await fetch('/file-list');
-  const files = await response.json();
-  const fileSelect = document.getElementById('file-select');
-  fileSelect.innerHTML = '';
-  files.forEach(file => {
-    const option = document.createElement('option');
-    option.value = file;
-    option.textContent = file;
-    fileSelect.appendChild(option);
-  });
+  try {
+    const response = await fetch('http://localhost:3000/file-list', {
+      mode: 'cors'
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const files = await response.json();
+    const fileSelect = document.getElementById('file-select');
+    fileSelect.innerHTML = '';
+    files.forEach(file => {
+      const option = document.createElement('option');
+      option.value = file;
+      option.textContent = file;
+      fileSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Failed to fetch file list:', error);
+  }
 }
 
 
