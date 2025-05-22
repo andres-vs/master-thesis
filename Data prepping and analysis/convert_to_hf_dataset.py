@@ -4,7 +4,7 @@ import os
 from tqdm import tqdm
 import argparse
 
-def generate_hf_dataset_from_jsonl(jsonl_file, output_file):
+def generate_hf_dataset_from_jsonl(jsonl_file, output_file, filter_qdep=False, depth=0, filter_rconc=False):
     examples = []
 
     with open(jsonl_file, 'r') as f:
@@ -13,12 +13,18 @@ def generate_hf_dataset_from_jsonl(jsonl_file, output_file):
             context = data["context"]
             questions = data['questions']
             for question in questions:
-                example = {
-                    'input': "[CLS]" + context + "[SEP]" + question['text'] + "[CLS]",
-                    'label': question['label'],
-                    'depth': question['meta']['QDep']
-                }
-                examples.append(example)
+                if filter_qdep and question['meta']['QDep'] != depth:
+                    continue
+                if filter_rconc and "rconc" in question['meta']['strategy']:
+                    continue
+                else:
+                    example = {
+                        'input': context + "[SEP]" + question['text'],
+                        'label': question['label'],
+                        'depth': question['meta']['QDep'],
+                        'proof_strategy': question['meta']['strategy'],
+                    }
+                    examples.append(example)
 
     with open(output_file, 'w', newline='', encoding='utf-8') as f:
         for example in examples:
@@ -34,6 +40,10 @@ parser.add_argument('--depth', type=int, default=0, help='Depth value for filter
 parser.add_argument('--only_attributes', action='store_true', help='Use only attributes')
 # Add an argument for excluding negatives
 parser.add_argument('--no_negatives', action='store_true', help='Exclude negatives')
+# Add an argument for filtering on QDep
+parser.add_argument('--QDep', action='store_true', help='Filter on QDep')
+# Add an argument for filtering on QDep
+parser.add_argument('--no_rconc', action='store_true', help='Filter on proof strategies (no rconc or inv-rconc; only proof, inv-proof, random or inv-random)')
 
 # Parse the command line arguments
 args = parser.parse_args()
@@ -42,6 +52,8 @@ args = parser.parse_args()
 DEPTH = args.depth
 ONLY_ATTRIBUTES = args.only_attributes
 NO_NEGATIVES = args.no_negatives
+FILTER_QDEP = args.QDep
+FILTER_RCONC = args.no_rconc
 
 # Define the prefix based on the arguments
 prefix = "Att" if ONLY_ATTRIBUTES else "Rel"
@@ -54,8 +66,15 @@ print(folder_path)
 # Get the list of JSONL files in the folder
 jsonl_files = glob.glob(folder_path + "/*.jsonl")
 
-# Create a new folder named "formatted" in the parent folder of the original files
-formatted_folder_path = os.path.join(folder_path, "formatted")
+dir_name = f"formatted"
+if FILTER_QDEP:
+    dir_name += f"_QDep-{DEPTH}"
+if FILTER_RCONC:
+    dir_name += "_no_rconc"
+
+formatted_folder_path = os.path.join(folder_path, dir_name)
+
+
 os.makedirs(formatted_folder_path, exist_ok=True)
 
 # Iterate over each JSONL file that does not have "meta" in its name
@@ -63,4 +82,4 @@ for file_path in tqdm(jsonl_files, desc="Files"):
     if "meta" not in file_path:
         # Define the path for the new JSONL file
         new_file_path = os.path.join(formatted_folder_path, os.path.basename(file_path).replace(".jsonl", "_formatted.jsonl"))    
-        generate_hf_dataset_from_jsonl(file_path, new_file_path)
+        generate_hf_dataset_from_jsonl(file_path, new_file_path, filter_qdep=FILTER_QDEP, depth=DEPTH, filter_rconc=FILTER_RCONC)
