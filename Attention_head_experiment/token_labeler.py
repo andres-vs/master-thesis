@@ -4,6 +4,7 @@ import sys
 import re
 from tqdm import tqdm
 import os
+import argparse
 
 def split_into_sentences(text):
     """
@@ -311,11 +312,16 @@ def label_context(doc_id, text):
 
     return all_rows, total_idx
 
-def label_query(doc_id, q_id, text, total_idx):
+def label_query(doc_id, q_id, text, total_idx, label=None, qdep=None, strategy=None):
     """
     Labels the 'query' text in the same manner.
     A query might be a single sentence like "Harry is not round." or
     it might contain multiple sentences. Usually it's just one, but let's handle multiple.
+    
+    Additional metadata parameters:
+    - label: The label/answer of the query
+    - qdep: The reasoning depth (QDep) of the query
+    - strategy: The proof strategy used for the query
     """
     sentences = split_into_sentences(text)
     all_rows = []
@@ -332,7 +338,10 @@ def label_query(doc_id, q_id, text, total_idx):
                 'part': 'query',
                 'fact_rule': fact_rule,
                 'premise_consequence': premise_consequence,
-                'semantic_label': semantic_label
+                'semantic_label': semantic_label,
+                'label': label,
+                'reasoning_depth': qdep,
+                'proof_strategy': strategy
             }
             all_rows.append(row)
             total_idx += 1
@@ -347,7 +356,10 @@ def label_query(doc_id, q_id, text, total_idx):
             'part': 'query',
             'fact_rule': token_labels[-1][1] if token_labels else 'fact',
             'premise_consequence': None,
-            'semantic_label': 'DOT'
+            'semantic_label': 'DOT',
+            'label': label,
+            'reasoning_depth': qdep,
+            'proof_strategy': strategy
         }
         all_rows.append(dot_row)
         total_idx += 1
@@ -363,18 +375,30 @@ def label_query(doc_id, q_id, text, total_idx):
             'part': 'query',
             'fact_rule': None,
             'premise_consequence': None,
-            'semantic_label': "SEP"
+            'semantic_label': "SEP",
+            'label': label,
+            'reasoning_depth': qdep,
+            'proof_strategy': strategy
         })
         total_idx += 1
     return all_rows
 
-def main(input_file, output_file=None):
+def main(input_file, output_file=None, rd_filter=None, ps_filter=None, only_attributes=False, no_negatives=False):
     """
     Main driver:
     1. Read each line from input_file as JSON.
     2. Parse the 'context' + 'questions'.
     3. Label each token in the context (theory) + queries.
     4. Write results to output_file as TSV.
+    5. Apply filters for reasoning depth, proof strategy, and document types.
+    
+    Parameters:
+    - input_file: Input JSONL file path
+    - output_file: Output TSV file path (optional)
+    - rd_filter: Filter by reasoning depth (QDep)
+    - ps_filter: Filter by proof strategy
+    - only_attributes: Filter for attribute documents ("Att" prefix) vs relation documents ("Rel" prefix)
+    - no_negatives: Filter for "Noneg" vs "Neg" in document IDs
     """
     # Create the output directory if it doesn't exist
     input_dir = os.path.dirname(input_file)
@@ -387,6 +411,14 @@ def main(input_file, output_file=None):
         output_filename = f"{os.path.splitext(input_filename)[0]}_tokens_labeled.tsv"
         output_file = os.path.join(output_dir, output_filename)
 
+    # Determine document prefix filter based on arguments
+    doc_prefix = None
+    if only_attributes or no_negatives:
+        prefix_part = "Att" if only_attributes else "Rel"
+        neg_part = "Noneg" if no_negatives else "Neg"
+        doc_prefix = f"{prefix_part}{neg_part}"
+        print(f"Filtering documents with prefix: {doc_prefix}")
+
     with open(input_file, 'r', encoding='utf-8') as f_in, \
          open(output_file, 'w', encoding='utf-8') as f_out:
 
@@ -394,7 +426,8 @@ def main(input_file, output_file=None):
         header = [
             'doc_id', 'q_id', 'sent_idx', 'token_idx', 'total_idx',
             'token', 'part', 'fact_rule',
-            'premise_consequence', 'semantic_label'
+            'premise_consequence', 'semantic_label',
+            'label', 'reasoning_depth', 'proof_strategy'
         ]
         f_out.write('\t'.join(header) + '\n')
 
@@ -405,33 +438,72 @@ def main(input_file, output_file=None):
             data = json.loads(line)
 
             doc_id = data.get('id', 'unknown_id')
+            
+            # Apply document ID prefix filter if specified
+            if doc_prefix and not doc_id.startswith(doc_prefix):
+                continue
+                
             context_text = data.get('context', '')
             questions = data.get('questions', [])
-
-            # Label context
+            
+            # Apply filters - check if any question matches the filter criteria
+            filtered_questions = []
+            for q in questions:
+                q_meta = q.get('meta', {})
+                q_qdep = q_meta.get('QDep', None)
+                q_strategy = q_meta.get('strategy', None)
+                
+                # Apply filters if specified
+                keep_question = True
+                if rd_filter is not None and str(q_qdep) != str(rd_filter):
+                    keep_question = False
+                if ps_filter is not None and q_strategy != ps_filter:
+                    keep_question = False
+                
+                if keep_question:
+                    filtered_questions.append(q)
+            
+            # Skip this context if no questions match the filters
+            if (rd_filter is not None or ps_filter is not None) and not filtered_questions:
+                continue
+                
+            # Label context only if we'll process at least one question
             context_rows, total_idx = label_context(doc_id, context_text)
             for r in context_rows:
+                # Add None values for the new columns
+                r['label'] = None
+                r['reasoning_depth'] = None
+                r['proof_strategy'] = None
                 row_str = '\t'.join(str(r[col]) for col in header)
                 f_out.write(row_str + '\n')
 
-            # Label each question
-            for q in questions:
+            # Label each question that passed the filters
+            for q in filtered_questions if filtered_questions else questions:
                 q_id = int(q.get('id', '').split("-")[-1])-1
                 q_text = q.get('text', '')
-                q_rows = label_query(doc_id, q_id, q_text, total_idx)
+                
+                # Extract metadata
+                q_label = q.get('label', None)
+                q_meta = q.get('meta', {})
+                q_qdep = q_meta.get('QDep', None)
+                q_strategy = q_meta.get('strategy', None)
+                
+                q_rows = label_query(doc_id, q_id, q_text, total_idx, 
+                                     label=q_label, qdep=q_qdep, strategy=q_strategy)
                 for r in q_rows:
                     row_str = '\t'.join(str(r[col]) for col in header)
                     f_out.write(row_str + '\n')
 
 
 if __name__ == '__main__':
-    # Example usage:
-    # python label_script.py input.jsonl output.tsv
-
-    if len(sys.argv) < 2:
-        print("Usage: python label_script.py <input_file.jsonl> [<output_file.tsv>]")
-        sys.exit(1)
-
-    input_file = sys.argv[1]
-    output_file = sys.argv[2] if len(sys.argv) > 2 else None
-    main(input_file, output_file)
+    parser = argparse.ArgumentParser(description="Label tokens in context and queries with semantic information")
+    parser.add_argument('input_file', help="Input JSONL file")
+    parser.add_argument('output_file', nargs='?', default=None, help="Output TSV file (optional)")
+    parser.add_argument('--RD', type=str, help="Filter by reasoning depth (QDep)", default=None)
+    parser.add_argument('--PS', type=str, help="Filter by proof strategy", default=None)
+    parser.add_argument('--only_attributes', action='store_true', help="Filter for attribute documents (Att prefix) vs relation documents (Rel prefix)")
+    parser.add_argument('--no_negatives', action='store_true', help="Filter for documents with 'Noneg' vs 'Neg' in ID")
+    
+    args = parser.parse_args()
+    main(args.input_file, args.output_file, rd_filter=args.RD, ps_filter=args.PS, 
+         only_attributes=args.only_attributes, no_negatives=args.no_negatives)
