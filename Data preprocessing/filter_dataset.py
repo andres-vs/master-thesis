@@ -28,7 +28,7 @@ prefix += "Noneg" if NO_NEGATIVES else "Neg"
 
 
 # Define the path to the folder containing the JSONL files
-folder_path = rf"C:\Users\andre\Documents\School\Hoger\Masterproef\Data\rule-reasoning-dataset-V2020.2.5\rule-reasoning-dataset-V2020.2.5.0\original\depth-{DEPTH}"
+folder_path = r"path/to/depth-n/" # e.g. rf"...\rule-reasoning-dataset-V2020.2.5\rule-reasoning-dataset-V2020.2.5.0\original\depth-{DEPTH}"
 
 # Get the list of JSONL files in the folder
 jsonl_files = glob.glob(folder_path + "/*.jsonl")
