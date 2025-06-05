@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import json
 import sys
 import re
@@ -384,7 +383,7 @@ def label_query(doc_id, q_id, text, total_idx, label=None, qdep=None, strategy=N
         all_rows.append({
             'doc_id': doc_id,
             'q_id': q_id,
-            'sent_idx': -1,  # or any sentinel value
+            'sent_idx': -1,
             'token_idx': None,
             'total_idx': total_idx,
             'token': '[SEP]',
