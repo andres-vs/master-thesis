@@ -32,12 +32,28 @@ def tokenize_sentence(sentence):
 def is_rule_sentence(sentence):
     """
     Heuristic to decide if sentence is a rule:
-    - Contains 'If' or 'All' or possibly 'things are' pattern
+    - Contains 'If' or 'All'
+    - Contains 'things are' pattern (like "Red things are big")
     """
     # Lowercase check (but store original form of tokens)
     lower = sentence.lower()
     if 'if ' in lower or 'all ' in lower:
         return True
+    
+    # Check for "[Property] things are" pattern
+    if ' things are ' in lower or lower.startswith('things are '):
+        return True
+    
+    # Check for patterns where a property (possibly capitalized) starts a sentence
+    # followed by "are" - like "Red things are kind" or "Quiet people are nice"
+    tokens = tokenize_sentence(lower)
+    if len(tokens) >= 3:
+        known_properties = {"red", "blue", "green", "kind", "nice", "big", "cold", "young", 
+                           "round", "rough", "white", "smart", "quiet", "furry"}
+        # Check if first word is a known property and 'are' appears in the sentence
+        if tokens[0] in known_properties and 'are' in tokens:
+            return True
+    
     return False
 
 def label_rule_tokens(tokens):
@@ -130,8 +146,13 @@ def guess_semantic_label(token):
     - 'or' -> CONJUNCTION
     - simple placeholders 'someone', 'something', 'they', 'it' -> OBJECT_PLACEHOLDER
     - punctuation
-    - else we guess 'OBJECT' or 'PROPERTY' (you may refine this)
+    - else we check against known OBJECT and PROPERTY lists
     """
+    # Define known objects and properties
+    known_objects = {"anne", "bob", "charlie", "dave", "erin", "fiona", "gary", "harry"}
+    known_properties = {"red", "blue", "green", "kind", "nice", "big", "cold", "young", 
+                        "round", "rough", "white", "smart", "quiet", "furry"}
+    
     t_lower = token.lower()
 
     if t_lower in ['is', 'are']:
@@ -148,16 +169,16 @@ def guess_semantic_label(token):
         return 'ALL_KEYWORD'
     elif t_lower in ['.', '?', ',', ';']:
         return 'PUNCT'
-    elif t_lower in ['someone', 'something', 'they', 'it', 'people', 'person']:
+    elif t_lower in ['someone', 'something', 'they', 'it', 'people', 'person', 'things']:
         return 'OBJECT_PLACEHOLDER'
+    # Check against known objects and properties
+    elif t_lower in known_objects:
+        return 'OBJECT'
+    elif t_lower in known_properties:
+        return 'PROPERTY'
     else:
-        # You could try more sophisticated checks, e.g.:
-        # if token matches a known set of object names (Harry, Bob, etc.)
-        # or if token is capitalized -> maybe it's an OBJECT
-        # Otherwise -> PROPERTY
-        # But let's do a naive approach:
+        # Fallback to the original heuristic for unknown tokens
         if token[0].isupper():
-            # Heuristic: uppercase initial => object (e.g. "Harry")
             return 'OBJECT'
         else:
             return 'PROPERTY'
@@ -166,7 +187,7 @@ def label_fact_tokens(tokens):
     """
     Label tokens in a fact sentence (like "Harry is big" or "Dave is not rough").
     We'll treat the entire sentence as a fact, 
-    and guess object vs property around 'is' or 'are'.
+    and guess object vs. property around 'is' or 'are'.
     """
     labeled = []
     # We can find "is" / "are" to identify object vs. property
@@ -181,24 +202,19 @@ def label_fact_tokens(tokens):
                 labeled.append((t, '-', 'VERB_IS'))
             # If it's before, guess object
             elif i < cop_idx:
-                # If it's "not" => NEGATION, else object
+                # Special case for "not", otherwise use guess_semantic_label
                 if t.lower() == 'not':
                     labeled.append((t, '-', 'NEGATION'))
                 else:
-                    # Heuristic: If capitalized, assume object. Else property.
-                    if t[0].isupper():
-                        labeled.append((t, '-', 'OBJECT'))
-                    else:
-                        labeled.append((t, '-', guess_semantic_label(t)))
+                    labeled.append((t, '-', guess_semantic_label(t)))
             else:
-                # If it's "not" => NEGATION, else property
+                # If it's after the copula, it could be "not" or a property
                 if t.lower() == 'not':
                     labeled.append((t, '-', 'NEGATION'))
                 else:
-                    labeled.append((t, '-', 'PROPERTY'))
+                    labeled.append((t, '-', guess_semantic_label(t)))
     else:
-        # fallback: no "is/are"? Just label everything as a property or object
-        # Typically won't happen if it's truly a fact, but who knows.
+        # fallback: no "is/are"? Just use guess_semantic_label for everything
         labeled = [(t, '-', guess_semantic_label(t)) for t in tokens]
 
     return labeled
